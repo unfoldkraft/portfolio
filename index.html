@@ -1,110 +1,123 @@
-<section id="projects" class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lionel G.S. | Engineering Design + Optimisation</title>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <script>
+    function changeImage(projectId, direction) {
+      const project = document.getElementById(projectId);
+      const images = project.getElementsByClassName("project-image");
+      let currentIndex = 0;
+      for (let i = 0; i < images.length; i++) {
+        if (!images[i].classList.contains("hidden")) {
+          currentIndex = i;
+          break;
+        }
+      }
+      images[currentIndex].classList.add("hidden");
+      let newIndex = (currentIndex + direction + images.length) % images.length;
+      images[newIndex].classList.remove("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    .project {
+      margin-bottom: 40px;
+    }
+    .project img {
+      max-width: 100%;
+      height: auto;
+    }
+    .hidden {
+      display: none;
+    }
+    .nav-button {
+      cursor: pointer;
+      background-color: #ccc;
+      border: none;
+      padding: 5px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="title">Lionel G.S. | Engineering Design + Optimisation</h1>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="about" class="container">
+    <h2 class="section-title">About Me</h2>
+    <p>
+      Welcome to my portfolio. I am a motivated civil engineer with industrial fabrication and construction management experience, having studied at ETH Zürich. Driven by curiosity about how to optimize sustainable material use/reuse, lengthen structure lifespans, and quantify risks.
+    </p>
+  </section>
+
+  <section id="projects" class="container">
     <h2 class="section-title">Projects</h2>
-
-    <div class="project">
-        <div class="project-image-container" data-size="medium">
-            <img src="CD_STANDS.png" alt="CD Stands" class="project-image active" />
-            <img src="CD_STANDS_2.png" alt="CD Stands Alternate" class="project-image" />
-        </div>
-        <button class="prev" onclick="prevImage(this)">&#10094;</button>
-        <button class="next" onclick="nextImage(this)">&#10095;</button>
-        <h3 class="project-title">CD Stands</h3>
-        <p>A contemporary project that integrates sleek design with structural optimisation for enhanced performance.</p>
-        <p><strong>Materiality:</strong> [Material details]</p>
-        <p><strong>Dimensions:</strong> [Dimensions]</p>
-        <p><strong>Completion Date:</strong> [Month, Year]</p>
+    
+    <div class="project" id="cello-stand">
+      <h3 class="project-title">Cello Stand</h3>
+      <button class="nav-button" onclick="changeImage('cello-stand', -1)">&#9665;</button>
+      <img src="CELLO_STAND_1_NO_BACKGROUND.png" class="project-image" />
+      <img src="CELLO_STAND_2_NO_BACKGROUND.png" class="project-image hidden" />
+      <button class="nav-button" onclick="changeImage('cello-stand', 1)">&#9655;</button>
+      <p>
+        A custom-designed stand for securely holding a cello, focusing on ergonomic accessibility and stability.
+      </p>
+      <p><strong>Materiality:</strong> Steel tubing, foam padding</p>
+      <p><strong>Dimensions:</strong> 80cm x 50cm x 100cm</p>
+      <p><strong>Completion Date:</strong> November 2019</p>
     </div>
-
-    <div class="project">
-        <div class="project-image-container" data-size="medium">
-            <img src="BARTON_RESTORATION.png" alt="Barton Restoration Building" class="project-image active" />
-        </div>
-        <h3 class="project-title">Barton Restoration Building</h3>
-        <p>The Barton Restoration Building project focuses on the revitalization of a historic structure, integrating modern engineering principles while preserving its architectural heritage.</p>
-        <p><strong>Materiality:</strong> Brick, reinforced concrete, reclaimed wood</p>
-        <p><strong>Dimensions:</strong> [Add dimensions]</p>
-        <p><strong>Completion Date:</strong> [Month, Year]</p>
+    
+    <div class="project" id="bike-rack">
+      <h3 class="project-title">Modular Milk Crate Bike Rack System</h3>
+      <button class="nav-button" onclick="changeImage('bike-rack', -1)">&#9665;</button>
+      <img src="IMG_20200722_093953411_HDR.jpg" class="project-image" />
+      <button class="nav-button" onclick="changeImage('bike-rack', 1)">&#9655;</button>
+      <p>
+        A modular attachment system designed for bicycles to transport milk crates securely.
+      </p>
+      <p><strong>Materiality:</strong> Aluminum frame, steel fasteners</p>
+      <p><strong>Dimensions:</strong> Adjustable sizing for different bike models</p>
+      <p><strong>Completion Date:</strong> March 2020</p>
     </div>
-
-    <div class="project">
-        <div class="project-image-container" data-size="medium">
-            <img src="MILK_CRATE_BIKE_RACK.png" alt="Modular Milk Crate Bike Rack" class="project-image active" />
-        </div>
-        <h3 class="project-title">Modular Milk Crate Bike Rack</h3>
-        <p>A modular storage and transport solution designed for urban cyclists, enhancing convenience and sustainability.</p>
-        <p><strong>Materiality:</strong> [Material details]</p>
-        <p><strong>Dimensions:</strong> [Dimensions]</p>
-        <p><strong>Completion Date:</strong> [Month, Year]</p>
+    
+    <div class="project" id="barton-restoration">
+      <h3 class="project-title">Barton Restoration Building</h3>
+      <button class="nav-button" onclick="changeImage('barton-restoration', -1)">&#9665;</button>
+      <img src="BARTON_RESTORATION.png" class="project-image" />
+      <button class="nav-button" onclick="changeImage('barton-restoration', 1)">&#9655;</button>
+      <p>
+        The Barton Restoration Building project focuses on the revitalization of a historic structure, integrating modern engineering principles while preserving its architectural heritage.
+      </p>
+      <p><strong>Materiality:</strong> Brick, reinforced concrete, reclaimed wood</p>
+      <p><strong>Dimensions:</strong> [Add dimensions from the Word doc]</p>
+      <p><strong>Completion Date:</strong> [Month, Year]</p>
     </div>
+  </section>
+  
+  <section id="contact" class="container">
+    <h2 class="section-title">Contact</h2>
+    <p>
+      For inquiries or project collaborations, please email me at
+      <a href="mailto:lionel.gs@example.com">lionel.gs@example.com</a>.
+    </p>
+  </section>
 
-    <div class="project">
-        <div class="project-image-container" data-size="medium">
-            <img src="CELLO_STAND_1_NO_BACKGROUND.png" alt="Cello Stand" class="project-image active" />
-            <img src="CELLO_STAND_2_NO_BACKGROUND.png" alt="Cello Stand Alternate" class="project-image" />
-        </div>
-        <button class="prev" onclick="prevImage(this)">&#10094;</button>
-        <button class="next" onclick="nextImage(this)">&#10095;</button>
-        <h3 class="project-title">Cello Stand</h3>
-        <p>A custom-designed cello stand that provides stability and aesthetic appeal for musicians.</p>
-        <p><strong>Materiality:</strong> [Material details]</p>
-        <p><strong>Dimensions:</strong> [Dimensions]</p>
-        <p><strong>Completion Date:</strong> [Month, Year]</p>
-    </div>
-</section>
-
-<script>
-function prevImage(button) {
-    let container = button.parentElement.querySelector(".project-image-container");
-    let images = container.getElementsByClassName("project-image");
-    let activeIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
-    images[activeIndex].classList.remove("active");
-    let newIndex = (activeIndex - 1 + images.length) % images.length;
-    images[newIndex].classList.add("active");
-}
-
-function nextImage(button) {
-    let container = button.parentElement.querySelector(".project-image-container");
-    let images = container.getElementsByClassName("project-image");
-    let activeIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
-    images[activeIndex].classList.remove("active");
-    let newIndex = (activeIndex + 1) % images.length;
-    images[newIndex].classList.add("active");
-}
-</script>
-
-<style>
-.project-image-container {
-    position: relative;
-    width: 100%;
-    text-align: center;
-}
-
-.project-image-container img {
-    display: none;
-    max-width: 100%;
-    height: auto;
-}
-
-.project-image-container img.active {
-    display: block;
-}
-
-button.prev, button.next {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-button.prev {
-    left: 0;
-}
-
-button.next {
-    right: 0;
-}
-</style>
+  <footer>
+    <p>&copy; 2025 Lionel G.S. | Engineering Design + Optimisation. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
