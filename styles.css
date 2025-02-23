@@ -1,11 +1,11 @@
-/* Reset some default styles */
+/* Reset default browser styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Set base font and background */
+/* Base styling */
 body {
   font-family: Helvetica, Arial, sans-serif;
   line-height: 1.6;
@@ -13,7 +13,7 @@ body {
   background: #fff;
 }
 
-/* Header styling with a minimalist design */
+/* Header styling */
 header {
   background: #fff;
   padding: 20px 0;
@@ -58,7 +58,7 @@ nav ul li a:hover {
   margin: 40px auto;
 }
 
-/* Section titles in all caps */
+/* Section titles styled in uppercase */
 .section-title {
   font-size: 1.8em;
   text-transform: uppercase;
@@ -68,16 +68,25 @@ nav ul li a:hover {
   padding-bottom: 10px;
 }
 
-/* Project blocks with clean spacing */
+/* Project block styling */
 .project {
   margin-bottom: 30px;
 }
 
+/* Project titles in uppercase */
 .project-title {
   font-size: 1.5em;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 10px;
+  margin: 10px 0;
+}
+
+/* Project images styling */
+.project-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 15px;
 }
 
 /* Footer styling */
