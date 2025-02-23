@@ -1,66 +1,63 @@
-/* Basic reset and styling */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  color: #333;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structural Engineering Portfolio</title>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>John Doe Structural Engineering</h1>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-header {
-  background: #333;
-  color: #fff;
-  padding: 1rem 0;
-  text-align: center;
-}
+  <section id="about" class="container">
+    <h2>About Me</h2>
+    <p>
+      Welcome to my portfolio website. I am a structural engineer with a passion for designing safe and efficient structures. With experience in bridge design, building analysis, and reinforced concrete structures, I bring innovation and precision to every project.
+    </p>
+  </section>
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-}
+  <section id="projects" class="container">
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>Bridge Design Project</h3>
+      <p>
+        A comprehensive design of a modern suspension bridge incorporating innovative materials and engineering techniques.
+      </p>
+    </div>
+    <div class="project">
+      <h3>High-Rise Building Analysis</h3>
+      <p>
+        Structural analysis and design of a high-rise building ensuring compliance with seismic and wind load standards.
+      </p>
+    </div>
+    <div class="project">
+      <h3>Reinforced Concrete Structure</h3>
+      <p>
+        Design and optimization of a reinforced concrete structure for a commercial facility with a focus on sustainability.
+      </p>
+    </div>
+  </section>
 
-nav ul li {
-  margin: 0 1rem;
-}
+  <section id="contact" class="container">
+    <h2>Contact</h2>
+    <p>
+      If you'd like to discuss a project or get in touch, feel free to email me at
+      <a href="mailto:john.doe@example.com">john.doe@example.com</a>.
+    </p>
+  </section>
 
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-section {
-  padding: 2rem 1rem;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.project {
-  border: 1px solid #ddd;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  background: #f9f9f9;
-}
-
-footer {
-  background: #333;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
-}
-
-@media (max-width: 600px) {
-  nav ul {
-    flex-direction: column;
-  }
-  nav ul li {
-    margin: 0.5rem 0;
-  }
-}
+  <footer>
+    <p>&copy; 2025 John Doe Structural Engineering. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
