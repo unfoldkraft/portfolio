@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lionel G.S. | Engineering Design + Optimisation</title>
-  <!-- Link to external CSS file -->
   <link rel="stylesheet" type="text/css" href="styles.css" />
   <script>
     function changeImage(projectId, direction) {
@@ -28,13 +27,25 @@
     }
     .project {
       margin-bottom: 40px;
+      position: relative;
     }
-    .project img {
+    .project-image-container {
+      position: relative;
       height: 300px;
-      width: auto;
+      text-align: center;
+      margin: 10px 0;
+    }
+    .project-image {
+      max-height: 100%;
+      max-width: 100%;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      border-radius: 0;
     }
     .hidden {
       display: none;
@@ -69,43 +80,45 @@
 
   <section id="projects" class="container">
     <h2 class="section-title">Projects</h2>
-    
+
     <div class="project" id="cello-stand">
       <h3 class="project-title">Cello Stand</h3>
       <button class="nav-button" onclick="changeImage('cello-stand', -1)">&#9665;</button>
-      <img src="CELLO_STAND_1_NO_BACKGROUND.png" class="project-image" />
-      <img src="CELLO_STAND_2_NO_BACKGROUND.png" class="project-image hidden" />
+      <div class="project-image-container">
+        <img src="CELLO_STAND_1_NO_BACKGROUND.png" class="project-image" />
+        <img src="CELLO_STAND_2_NO_BACKGROUND.png" class="project-image hidden" />
+      </div>
       <button class="nav-button" onclick="changeImage('cello-stand', 1)">&#9655;</button>
-      <p>
-        A custom-designed stand for securely holding a cello, focusing on ergonomic accessibility and stability.
-      </p>
+      <p>A custom-designed stand for securely holding a cello, focusing on ergonomic accessibility and stability.</p>
       <p><strong>Materiality:</strong> Steel tubing, foam padding</p>
       <p><strong>Dimensions:</strong> 80cm x 50cm x 100cm</p>
       <p><strong>Completion Date:</strong> November 2019</p>
     </div>
-    
+
     <div class="project" id="bike-rack">
       <h3 class="project-title">Modular Milk Crate Bike Rack System</h3>
       <button class="nav-button" onclick="changeImage('bike-rack', -1)">&#9665;</button>
-      <img src="IMG_20200722_093953411_HDR.jpg" class="project-image" />
+      <div class="project-image-container">
+        <img src="IMG_20200722_093953411_HDR.jpg" class="project-image" />
+      </div>
       <button class="nav-button" onclick="changeImage('bike-rack', 1)">&#9655;</button>
-      <p>
-        A modular attachment system designed for bicycles to transport milk crates securely.
-      </p>
+      <p>A modular attachment system designed for bicycles to transport milk crates securely.</p>
       <p><strong>Materiality:</strong> Aluminum frame, steel fasteners</p>
       <p><strong>Dimensions:</strong> Adjustable sizing for different bike models</p>
       <p><strong>Completion Date:</strong> March 2020</p>
     </div>
-    
+
     <div class="project" id="barton-restoration">
       <h3 class="project-title">Barton Storage Building Renovation</h3>
       <button class="nav-button" onclick="changeImage('barton-restoration', -1)">&#9665;</button>
-      <img src="Barton_Pre.jpg" class="project-image" />
-      <img src="Barton_Con.jpg" class="project-image hidden" />
-      <img src="Barton_Con_2.jpg" class="project-image hidden" />
-      <img src="Barton_Post.jpg" class="project-image hidden" />
-      <img src="Barton_View.jpg" class="project-image hidden" />
-      <img src="Barton_srf.JPG" class="project-image hidden" />
+      <div class="project-image-container">
+        <img src="Barton_Pre.jpg" class="project-image" />
+        <img src="Barton_Con.jpg" class="project-image hidden" />
+        <img src="Barton_Con_2.jpg" class="project-image hidden" />
+        <img src="Barton_Post.jpg" class="project-image hidden" />
+        <img src="Barton_View.jpg" class="project-image hidden" />
+        <img src="Barton_srf.JPG" class="project-image hidden" />
+      </div>
       <button class="nav-button" onclick="changeImage('barton-restoration', 1)">&#9655;</button>
       <p>
         Demolition of existing (non-serviceable) roof and foundation. Planning and execution of new main wind lateral resisting system and construction of replacement structural elements from demolition site 50km away. 21 SQM footprint, steel+wood construction, located in Sonceboz-Sombeval, Switzerland. 877 Kg CO2 equivalents saved with reused materials.
@@ -118,13 +131,13 @@
     <div class="project" id="concept-dorm">
       <h3 class="project-title">Concept Dormatory</h3>
       <button class="nav-button" onclick="changeImage('concept-dorm', -1)">&#9665;</button>
-      <img src="Floor 1.jpg" class="project-image" />
-      <img src="Floor 3.jpg" class="project-image hidden" />
-      <img src="3d rendergood.jpg" class="project-image hidden" />
+      <div class="project-image-container">
+        <img src="Floor 1.jpg" class="project-image" />
+        <img src="Floor 3.jpg" class="project-image hidden" />
+        <img src="3d rendergood.jpg" class="project-image hidden" />
+      </div>
       <button class="nav-button" onclick="changeImage('concept-dorm', 1)">&#9655;</button>
-      <p>
-        Concept Dorm
-      </p>
+      <p>Concept Dorm</p>
       <p><strong>Materiality:</strong> Brick, reinforced concrete, reclaimed wood</p>
       <p><strong>Dimensions:</strong> [Add dimensions from the Word doc]</p>
       <p><strong>Completion Date:</strong> [Month, Year]</p>
@@ -133,32 +146,32 @@
     <div class="project" id="cc1">
       <h3 class="project-title">DWWLA Lamp</h3>
       <button class="nav-button" onclick="changeImage('cc1', -1)">&#9665;</button>
-      <img src="carbon_creature_1_nobackground.png" class="project-image" />
-      <img src="carbon_creature_2_nobackground.png" class="project-image hidden" />
+      <div class="project-image-container">
+        <img src="carbon_creature_1_nobackground.png" class="project-image" />
+        <img src="carbon_creature_2_nobackground.png" class="project-image hidden" />
+      </div>
       <button class="nav-button" onclick="changeImage('cc1', 1)">&#9655;</button>
-      <p>
-        Carbon Creature
-      </p>
+      <p>Carbon Creature</p>
       <p><strong>Materiality:</strong> Steel</p>
       <p><strong>Dimensions:</strong> [Add dimensions from the Word doc]</p>
       <p><strong>Completion Date:</strong> [Month, Year]</p>
     </div>
-    
+
     <div class="project" id="lamp">
       <h3 class="project-title">DWWLA Lamp</h3>
       <button class="nav-button" onclick="changeImage('lamp', -1)">&#9665;</button>
-      <img src="Lamp DWWLA 01 no background.png" class="project-image" />
-      <img src="Lamp DWWLA 02 no background.png" class="project-image hidden" />
+      <div class="project-image-container">
+        <img src="Lamp DWWLA 01 no background.png" class="project-image" />
+        <img src="Lamp DWWLA 02 no background.png" class="project-image hidden" />
+      </div>
       <button class="nav-button" onclick="changeImage('lamp', 1)">&#9655;</button>
-      <p>
-        Lamp
-      </p>
+      <p>Lamp</p>
       <p><strong>Materiality:</strong> Brick, reinforced concrete, reclaimed wood</p>
       <p><strong>Dimensions:</strong> [Add dimensions from the Word doc]</p>
       <p><strong>Completion Date:</strong> [Month, Year]</p>
     </div>
   </section>
-  
+
   <section id="contact" class="container">
     <h2 class="section-title">Contact</h2>
     <p>
