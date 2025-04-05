@@ -21,13 +21,11 @@
       let newIndex = (currentIndex + direction + images.length) % images.length;
       images[newIndex].classList.remove("hidden");
 
-      // Update the counter
       if (counter) {
         counter.textContent = `${newIndex + 1} / ${images.length}`;
       }
     }
 
-    // Initialize counters on page load
     window.onload = function () {
       const projects = document.getElementsByClassName("project");
       for (let project of projects) {
@@ -45,8 +43,19 @@
     }
 
     .project {
-      margin-bottom: 40px;
-      position: relative;
+      margin-bottom: 60px;
+    }
+
+    .project-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .project-text,
+    .project-visuals {
+      flex: 1 1 45%;
+      min-width: 300px;
     }
 
     .project-image-container {
@@ -93,6 +102,12 @@
       padding: 5px 10px;
       font-size: 16px;
     }
+
+    @media (max-width: 768px) {
+      .project-content {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 <body>
@@ -117,112 +132,152 @@
   <section id="projects" class="container">
     <h2 class="section-title">Projects</h2>
 
+    <!-- Project: Cello Stand -->
     <div class="project" id="cello-stand">
-      <h3 class="project-title">Cello Stand</h3>
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('cello-stand', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('cello-stand', 1)">&#9655;</button>
-        <span class="image-counter"></span>
+      <div class="project-content">
+        <div class="project-text">
+          <h3 class="project-title">Cello Stand</h3>
+          <p>A custom-designed stand for securely holding a cello, focusing on ergonomic accessibility and stability.</p>
+          <p><strong>Materiality:</strong> Steel tubing, foam padding</p>
+          <p><strong>Dimensions:</strong> 80cm x 50cm x 100cm</p>
+          <p><strong>Completion Date:</strong> November 2019</p>
+        </div>
+        <div class="project-visuals">
+          <div class="image-controls">
+            <button class="nav-button" onclick="changeImage('cello-stand', -1)">&#9665;</button>
+            <button class="nav-button" onclick="changeImage('cello-stand', 1)">&#9655;</button>
+            <span class="image-counter"></span>
+          </div>
+          <div class="project-image-container">
+            <img src="CELLO_STAND_1_NO_BACKGROUND.png" class="project-image" />
+            <img src="CELLO_STAND_2_NO_BACKGROUND.png" class="project-image hidden" />
+          </div>
+        </div>
       </div>
-      <div class="project-image-container">
-        <img src="CELLO_STAND_1_NO_BACKGROUND.png" class="project-image" />
-        <img src="CELLO_STAND_2_NO_BACKGROUND.png" class="project-image hidden" />
-      </div>
-      <p>A custom-designed stand for securely holding a cello, focusing on ergonomic accessibility and stability.</p>
-      <p><strong>Materiality:</strong> Steel tubing, foam padding</p>
-      <p><strong>Dimensions:</strong> 80cm x 50cm x 100cm</p>
-      <p><strong>Completion Date:</strong> November 2019</p>
     </div>
 
+    <!-- Project: Bike Rack -->
     <div class="project" id="bike-rack">
-      <h3 class="project-title">Modular Milk Crate Bike Rack System</h3>
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('bike-rack', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('bike-rack', 1)">&#9655;</button>
-        <span class="image-counter"></span>
+      <div class="project-content">
+        <div class="project-text">
+          <h3 class="project-title">Modular Milk Crate Bike Rack System</h3>
+          <p>A modular attachment system designed for bicycles to transport milk crates securely.</p>
+          <p><strong>Materiality:</strong> Aluminum frame, steel fasteners</p>
+          <p><strong>Dimensions:</strong> Adjustable sizing for different bike models</p>
+          <p><strong>Completion Date:</strong> March 2020</p>
+        </div>
+        <div class="project-visuals">
+          <div class="image-controls">
+            <button class="nav-button" onclick="changeImage('bike-rack', -1)">&#9665;</button>
+            <button class="nav-button" onclick="changeImage('bike-rack', 1)">&#9655;</button>
+            <span class="image-counter"></span>
+          </div>
+          <div class="project-image-container">
+            <img src="IMG_20200722_093953411_HDR.jpg" class="project-image" />
+          </div>
+        </div>
       </div>
-      <div class="project-image-container">
-        <img src="IMG_20200722_093953411_HDR.jpg" class="project-image" />
-      </div>
-      <p>A modular attachment system designed for bicycles to transport milk crates securely.</p>
-      <p><strong>Materiality:</strong> Aluminum frame, steel fasteners</p>
-      <p><strong>Dimensions:</strong> Adjustable sizing for different bike models</p>
-      <p><strong>Completion Date:</strong> March 2020</p>
     </div>
 
+    <!-- Project: Barton Restoration -->
     <div class="project" id="barton-restoration">
-      <h3 class="project-title">Barton Storage Building Renovation</h3>
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('barton-restoration', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('barton-restoration', 1)">&#9655;</button>
-        <span class="image-counter"></span>
+      <div class="project-content">
+        <div class="project-text">
+          <h3 class="project-title">Barton Storage Building Renovation</h3>
+          <p>Demolition of existing (non-serviceable) roof and foundation. Planning and execution of new main wind lateral resisting system and construction of replacement structural elements from demolition site 50km away. 21 SQM footprint, steel+wood construction, located in Sonceboz-Sombeval, Switzerland. 877 Kg CO2 equivalents saved with reused materials.</p>
+          <p><strong>Materiality:</strong> Reclaimed galvanized steel, reclaimed corrugated steel, reused wood</p>
+          <p><strong>Dimensions:</strong> w: 3 m h: 3 m l: 9 m</p>
+          <p><strong>Completion Date:</strong> August 2023</p>
+        </div>
+        <div class="project-visuals">
+          <div class="image-controls">
+            <button class="nav-button" onclick="changeImage('barton-restoration', -1)">&#9665;</button>
+            <button class="nav-button" onclick="changeImage('barton-restoration', 1)">&#9655;</button>
+            <span class="image-counter"></span>
+          </div>
+          <div class="project-image-container">
+            <img src="Barton_Pre.jpg" class="project-image" />
+            <img src="Barton_Con.jpg" class="project-image hidden" />
+            <img src="Barton_Con_2.jpg" class="project-image hidden" />
+            <img src="Barton_Post.jpg" class="project-image hidden" />
+            <img src="Barton_View.jpg" class="project-image hidden" />
+            <img src="Barton_srf.JPG" class="project-image hidden" />
+          </div>
+        </div>
       </div>
-      <div class="project-image-container">
-        <img src="Barton_Pre.jpg" class="project-image" />
-        <img src="Barton_Con.jpg" class="project-image hidden" />
-        <img src="Barton_Con_2.jpg" class="project-image hidden" />
-        <img src="Barton_Post.jpg" class="project-image hidden" />
-        <img src="Barton_View.jpg" class="project-image hidden" />
-        <img src="Barton_srf.JPG" class="project-image hidden" />
-      </div>
-      <p>
-        Demolition of existing (non-serviceable) roof and foundation. Planning and execution of new main wind lateral resisting system and construction of replacement structural elements from demolition site 50km away. 21 SQM footprint, steel+wood construction, located in Sonceboz-Sombeval, Switzerland. 877 Kg CO2 equivalents saved with reused materials.
-      </p>
-      <p><strong>Materiality:</strong> Reclaimed galvanized steel, reclaimed corrugated steel, reused wood</p>
-      <p><strong>Dimensions:</strong> w: 3 m      h: 3 m       l: 9 m</p>
-      <p><strong>Completion Date:</strong> August 2023</p>
     </div>
 
+    <!-- Project: Concept Dorm -->
     <div class="project" id="concept-dorm">
-      <h3 class="project-title">Concept Dormatory</h3>
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('concept-dorm', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('concept-dorm', 1)">&#9655;</button>
-        <span class="image-counter"></span>
+      <div class="project-content">
+        <div class="project-text">
+          <h3 class="project-title">Concept Dormitory</h3>
+          <p>Concept Dorm</p>
+          <p><strong>Materiality:</strong> Brick, reinforced concrete, reclaimed wood</p>
+          <p><strong>Dimensions:</strong> [Add dimensions from the Word doc]</p>
+          <p><strong>Completion Date:</strong> [Month, Year]</p>
+        </div>
+        <div class="project-visuals">
+          <div class="image-controls">
+            <button class="nav-button" onclick="changeImage('concept-dorm', -1)">&#9665;</button>
+            <button class="nav-button" onclick="changeImage('concept-dorm', 1)">&#9655;</button>
+            <span class="image-counter"></span>
+          </div>
+          <div class="project-image-container">
+            <img src="Floor 1.jpg" class="project-image" />
+            <img src="Floor 3.jpg" class="project-image hidden" />
+            <img src="3d rendergood.jpg" class="project-image hidden" />
+          </div>
+        </div>
       </div>
-      <div class="project-image-container">
-        <img src="Floor 1.jpg" class="project-image" />
-        <img src="Floor 3.jpg" class="project-image hidden" />
-        <img src="3d rendergood.jpg" class="project-image hidden" />
-      </div>
-      <p>Concept Dorm</p>
-      <p><strong>Materiality:</strong> Brick, reinforced concrete, reclaimed wood</p>
-      <p><strong>Dimensions:</strong> [Add dimensions from the Word doc]</p>
-      <p><strong>Completion Date:</strong> [Month, Year]</p>
     </div>
 
+    <!-- Project: CC1 -->
     <div class="project" id="cc1">
-      <h3 class="project-title">DWWLA Lamp</h3>
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('cc1', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('cc1', 1)">&#9655;</button>
-        <span class="image-counter"></span>
+      <div class="project-content">
+        <div class="project-text">
+          <h3 class="project-title">DWWLA Lamp</h3>
+          <p>Carbon Creature</p>
+          <p><strong>Materiality:</strong> Steel</p>
+          <p><strong>Dimensions:</strong> [Add dimensions from the Word doc]</p>
+          <p><strong>Completion Date:</strong> [Month, Year]</p>
+        </div>
+        <div class="project-visuals">
+          <div class="image-controls">
+            <button class="nav-button" onclick="changeImage('cc1', -1)">&#9665;</button>
+            <button class="nav-button" onclick="changeImage('cc1', 1)">&#9655;</button>
+            <span class="image-counter"></span>
+          </div>
+          <div class="project-image-container">
+            <img src="carbon_creature_1_nobackground.png" class="project-image" />
+            <img src="carbon_creature_2_nobackground.png" class="project-image hidden" />
+          </div>
+        </div>
       </div>
-      <div class="project-image-container">
-        <img src="carbon_creature_1_nobackground.png" class="project-image" />
-        <img src="carbon_creature_2_nobackground.png" class="project-image hidden" />
-      </div>
-      <p>Carbon Creature</p>
-      <p><strong>Materiality:</strong> Steel</p>
-      <p><strong>Dimensions:</strong> [Add dimensions from the Word doc]</p>
-      <p><strong>Completion Date:</strong> [Month, Year]</p>
     </div>
 
+    <!-- Project: Lamp -->
     <div class="project" id="lamp">
-      <h3 class="project-title">DWWLA Lamp</h3>
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('lamp', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('lamp', 1)">&#9655;</button>
-        <span class="image-counter"></span>
+      <div class="project-content">
+        <div class="project-text">
+          <h3 class="project-title">DWWLA Lamp</h3>
+          <p>Lamp</p>
+          <p><strong>Materiality:</strong> Brick, reinforced concrete, reclaimed wood</p>
+          <p><strong>Dimensions:</strong> [Add dimensions from the Word doc]</p>
+          <p><strong>Completion Date:</strong> [Month, Year]</p>
+        </div>
+        <div class="project-visuals">
+          <div class="image-controls">
+            <button class="nav-button" onclick="changeImage('lamp', -1)">&#9665;</button>
+            <button class="nav-button" onclick="changeImage('lamp', 1)">&#9655;</button>
+            <span class="image-counter"></span>
+          </div>
+          <div class="project-image-container">
+            <img src="Lamp DWWLA 01 no background.png" class="project-image" />
+            <img src="Lamp DWWLA 02 no background.png" class="project-image hidden" />
+          </div>
+        </div>
       </div>
-      <div class="project-image-container">
-        <img src="Lamp DWWLA 01 no background.png" class="project-image" />
-        <img src="Lamp DWWLA 02 no background.png" class="project-image hidden" />
-      </div>
-      <p>Lamp</p>
-      <p><strong>Materiality:</strong> Brick, reinforced concrete, reclaimed wood</p>
-      <p><strong>Dimensions:</strong> [Add dimensions from the Word doc]</p>
-      <p><strong>Completion Date:</strong> [Month, Year]</p>
     </div>
   </section>
 
