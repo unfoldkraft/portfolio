@@ -264,14 +264,7 @@
     body.classList.remove('mobile-mode');
     localStorage.setItem('viewMode', 'desktop');
   }
-} else {
-    body.classList.remove('mobile-mode');
-    localStorage.setItem('viewMode', 'desktop');
-  }
-} else {
-    body.classList.remove('mobile-mode');
-    localStorage.setItem('viewMode', 'desktop');
-  }
+}
 } else {
     body.classList.remove('mobile-mode');
   }
@@ -296,7 +289,24 @@ window.onload = function () {
   </script>
 </head>
 <body>
-  
+  <header>
+    <h1 class="title">Lionel G.S. | Engineering Design + Optimisation</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div style="margin-left: auto; padding-left: 20px;">
+      <label for="view-mode-select">View mode:</label>
+      <select id="view-mode-select" onchange="switchViewMode(this.value)">
+        <option value="desktop">Desktop</option>
+        <option value="mobile">Mobile</option>
+      </select>
+    </div>
+  </header>
     <div style="margin-left: auto; padding-left: 20px;">
       <label for="view-mode-select">View mode:</label>
       <select id="view-mode-select" onchange="switchViewMode(this.value)">
