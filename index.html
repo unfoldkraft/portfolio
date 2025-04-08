@@ -121,10 +121,7 @@
       font-size: 1.4em;
     }
 
-    .mobile-mode .project-image-container,
-    .mobile-mode .project-image {
-      max-height: none !important;
-    }
+    
 
     .mobile-mode .project {
       border: 1px solid #ddd;
@@ -149,7 +146,25 @@
         gap: 10px;
       }
     }
-  </style>
+  .mobile-mode .project-image-container,
+.mobile-mode .project-image {
+  max-height: none !important;
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.mobile-mode .project-text {
+  position: relative;
+  z-index: 1;
+  background: white;
+  padding: 12px;
+  margin-top: 10px;
+}
+</style>
   <script>
     function toggleMenu() {
       const nav = document.querySelector("nav");
@@ -252,7 +267,7 @@
         <span class="image-counter"></span>
       </div>
       <div class="project-image-container">
-        <img src="Bridge_1.png" class="project-image" />
+        <img src="Bridge_1.png" class="project-image" alt="Project image" />
         <img src="Bridge_2a.png" class="project-image hidden" />
         <img src="Bridge_2b.png" class="project-image hidden" />
         <img src="Bridge_3.png" class="project-image hidden" />
