@@ -4,45 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lionel G.S. | Engineering Design + Optimisation</title>
-  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link rel="stylesheet" href="styles.css" />
   <style>
     body {
-  transition: all 0.4s ease;
-
-  font-family: Helvetica, Arial, sans-serif;
-  margin: 0;
-}
-
-.mobile-mode .project-content {
-  transition: all 0.4s ease;
-
-  flex-direction: column !important;
-}
-
-.mobile-mode .project-visuals {
-  order: -1;
-}
-
-.mobile-mode .project-title {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 1.4em;
-}
-
-.mobile-mode .project-image-container,
-.mobile-mode .project-image {
-  max-height: none !important;
-}
-
-.mobile-mode .project {
-  transition: all 0.4s ease;
-
-  border: 1px solid #ddd;
-  padding: 16px;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  background: #fafafa;
-}
+      font-family: Helvetica, Arial, sans-serif;
+      margin: 0;
+      transition: all 0.4s ease;
+    }
 
     header {
       display: flex;
@@ -80,25 +48,20 @@
       cursor: pointer;
     }
 
-    nav.open ul {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 10px;
-    }
-
     .container {
       padding: 20px;
     }
 
     .project {
       margin-bottom: 60px;
+      transition: all 0.4s ease;
     }
 
     .project-content {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
+      transition: all 0.4s ease;
     }
 
     .project-text,
@@ -144,39 +107,37 @@
       font-size: 16px;
     }
 
+    .mobile-mode .project-content {
+      flex-direction: column !important;
+    }
+
+    .mobile-mode .project-visuals {
+      order: -1;
+    }
+
+    .mobile-mode .project-title {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 1.4em;
+    }
+
+    .mobile-mode .project-image-container,
+    .mobile-mode .project-image {
+      max-height: none !important;
+    }
+
+    .mobile-mode .project {
+      border: 1px solid #ddd;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      background: #fafafa;
+    }
+
     @media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  nav ul {
-    display: none;
-  }
-
-  nav.open ul {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  body:not(.mobile-mode) .project-content {
-    flex-direction: column;
-  }
-
-  body:not(.mobile-mode) .project-visuals {
-    order: -1;
-  }
-
-  body:not(.mobile-mode) .project-title {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  body:not(.mobile-mode) .project-image-container,
-  body:not(.mobile-mode) .project-image {
-    max-height: none;
-  }
-}
+      .menu-toggle {
+        display: block;
+      }
 
       nav ul {
         display: none;
@@ -187,49 +148,8 @@
         flex-direction: column;
         gap: 10px;
       }
-
-      .project-content {
-        flex-direction: column;
-      }
-
-      .project-visuals {
-        order: -1;
-      }
-
-      .project-title {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-
-      .project-image-container {
-        max-height: none;
-      }
-
-      .project-image {
-        max-height: none;
-      }
     }
-    .mobile-mode .project-content {
-    flex-direction: column !important;
-  }
-
-  .mobile-mode .project-visuals {
-    order: -1;
-  }
-
-  .mobile-mode .project-title {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  .mobile-mode .project-image-container {
-    max-height: none;
-  }
-
-  .mobile-mode .project-image {
-    max-height: none;
-  }
-</style>
+  </style>
   <script>
     function toggleMenu() {
       const nav = document.querySelector("nav");
@@ -256,26 +176,22 @@
     }
 
     function switchViewMode(mode) {
-  const body = document.body;
-  if (mode === 'mobile') {
-    body.classList.add('mobile-mode');
-    localStorage.setItem('viewMode', 'mobile');
-  } else {
-    body.classList.remove('mobile-mode');
-    localStorage.setItem('viewMode', 'desktop');
-  }
-}
-} else {
-    body.classList.remove('mobile-mode');
-  }
-}
+      const body = document.body;
+      if (mode === 'mobile') {
+        body.classList.add('mobile-mode');
+        localStorage.setItem('viewMode', 'mobile');
+      } else {
+        body.classList.remove('mobile-mode');
+        localStorage.setItem('viewMode', 'desktop');
+      }
+    }
 
-window.onload = function () {
-  const savedMode = localStorage.getItem('viewMode');
-  if (savedMode) {
-    document.getElementById('view-mode-select').value = savedMode;
-    switchViewMode(savedMode);
-  }
+    window.onload = function () {
+      const savedMode = localStorage.getItem('viewMode');
+      if (savedMode) {
+        document.getElementById('view-mode-select').value = savedMode;
+        switchViewMode(savedMode);
+      }
 
       const projects = document.getElementsByClassName("project");
       for (let project of projects) {
@@ -307,14 +223,6 @@ window.onload = function () {
       </select>
     </div>
   </header>
-    <div style="margin-left: auto; padding-left: 20px;">
-      <label for="view-mode-select">View mode:</label>
-      <select id="view-mode-select" onchange="switchViewMode(this.value)">
-        <option value="desktop">Desktop</option>
-        <option value="mobile">Mobile</option>
-      </select>
-    </div>
-  </header>
 
   <section id="about" class="container">
     <h2 class="section-title">About Me</h2>
@@ -325,15 +233,14 @@ window.onload = function () {
 
   <section id="projects" class="container">
     <h2 class="section-title">Projects</h2>
-    <!-- All project blocks restored below with corrected spelling and mobile layout logic. -->
-<!-- Project: Bridge Design -->
+    <!-- Project blocks inserted below -->
 <div class="project" id="bridge">
   <div class="project-content">
     <div class="project-text">
       <h3 class="project-title">Bridge Design Concept</h3>
       <p>Conceptual Bridge Design Competition over the Limmat in the city of Zurich, Switzerland. Featuring a compact composite superstructure with S335 Steel and UHPC top deck. The substructure utilizes two integral concrete supports that anchor into pile foundations under the river, where abutments accommodate expansion and contraction from temperature changes.</p>
       <p><strong>Materiality:</strong> Steel + UHPC</p>
-      <p><strong>Dimensions:</strong> Span 40m </p>
+      <p><strong>Dimensions:</strong> Span 40m</p>
       <p><strong>Completion Date:</strong> December 2024</p>
       <p><strong>Supervisor:</strong> Prof. Dr. Walter Kaufmann</p>
       <p><strong>Collaborators:</strong> Antoine Binggeli</p>
@@ -356,6 +263,8 @@ window.onload = function () {
     </div>
   </div>
 </div>
+<!-- Additional projects inserted -->
+
 <!-- Project: Cello Stand -->
 <div class="project" id="cello-stand">
   <div class="project-content">
@@ -430,8 +339,6 @@ window.onload = function () {
     </div>
   </div>
 </div>
-    <!-- For example, here's the corrected caption line from the Bridge Design Project: -->
-    <!-- "The substructure utilizes two integral concrete supports that anchor into pile foundations under the river, where abutments accommodate expansion and contraction from temperature changes." -->
     <!-- Project: Concept Dorm -->
 <div class="project" id="concept-dorm">
   <div class="project-content">
@@ -546,7 +453,5 @@ window.onload = function () {
   <footer>
     <p>&copy; 2025 Lionel G.S. | Engineering Design + Optimisation. All Rights Reserved.</p>
   </footer>
-  <!-- I've got the full original block saved, so I’ll paste it back in now with the corrected spelling. -->
-  <!-- For space and readability, I'll reinsert that section right after this update. -->
 </body>
 </html>
