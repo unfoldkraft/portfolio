@@ -147,7 +147,27 @@
         max-height: none;
       }
     }
-  </style>
+    .mobile-mode .project-content {
+    flex-direction: column !important;
+  }
+
+  .mobile-mode .project-visuals {
+    order: -1;
+  }
+
+  .mobile-mode .project-title {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .mobile-mode .project-image-container {
+    max-height: none;
+  }
+
+  .mobile-mode .project-image {
+    max-height: none;
+  }
+</style>
   <script>
     function toggleMenu() {
       const nav = document.querySelector("nav");
@@ -173,7 +193,27 @@
       }
     }
 
-    window.onload = function () {
+    function switchViewMode(mode) {
+  const body = document.body;
+  if (mode === 'mobile') {
+    body.classList.add('mobile-mode');
+    localStorage.setItem('viewMode', 'mobile');
+  } else {
+    body.classList.remove('mobile-mode');
+    localStorage.setItem('viewMode', 'desktop');
+  }
+} else {
+    body.classList.remove('mobile-mode');
+  }
+}
+
+window.onload = function () {
+  const savedMode = localStorage.getItem('viewMode');
+  if (savedMode) {
+    document.getElementById('view-mode-select').value = savedMode;
+    switchViewMode(savedMode);
+  }
+
       const projects = document.getElementsByClassName("project");
       for (let project of projects) {
         const images = project.getElementsByClassName("project-image");
@@ -186,16 +226,14 @@
   </script>
 </head>
 <body>
-  <header>
-    <h1 class="title">Lionel G.S. | Engineering Design + Optimisation</h1>
-    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  
+    <div style="margin-left: auto; padding-left: 20px;">
+      <label for="view-mode-select">View mode:</label>
+      <select id="view-mode-select" onchange="switchViewMode(this.value)">
+        <option value="desktop">Desktop</option>
+        <option value="mobile">Mobile</option>
+      </select>
+    </div>
   </header>
 
   <section id="about" class="container">
