@@ -2,486 +2,533 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lionel G.S. | Engineering Design + Optimisation</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Portfolio of Lionel G.S. — engineering design and optimisation projects." />
   <style>
+    /* ------------------------------
+       Architecture-inspired system
+       ------------------------------ */
+    :root {
+      --bg: #ffffff;
+      --text: #111213;
+      --muted: #6b6f76;
+      --line: #e8eaed;
+      --brand: #0a0a0a; /* restrained, monochrome */
+      --accent: #3b82f6; /* used very sparingly */
+
+      --radius: 14px;
+      --space-1: .25rem;
+      --space-2: .5rem;
+      --space-3: .75rem;
+      --space-4: 1rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+      --space-7: 3rem;
+      --space-8: 4rem;
+
+      --maxw: 1200px;
+
+      /* Fluid type — scales between mobile/desktop */
+      --step--1: clamp(.78rem, .72rem + .2vw, .9rem);
+      --step-0: clamp(.95rem, .9rem + .3vw, 1.05rem);
+      --step-1: clamp(1.1rem, 1.05rem + .4vw, 1.25rem);
+      --step-2: clamp(1.35rem, 1.25rem + .6vw, 1.6rem);
+      --step-3: clamp(1.7rem, 1.55rem + 1vw, 2.1rem);
+      --step-4: clamp(2.1rem, 1.9rem + 1.4vw, 2.7rem);
+      --step-5: clamp(2.6rem, 2.3rem + 1.8vw, 3.4rem);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0c0d;
+        --text: #e9eaec;
+        --muted: #a3a7ad;
+        --line: #1b1d20;
+        --brand: #e9eaec;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
-      font-family: Helvetica, Arial, sans-serif;
       margin: 0;
-      transition: all 0.4s ease;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      font-size: var(--step-0);
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ------------------------------
+       Header / Navigation
+       ------------------------------ */
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: saturate(140%) blur(6px);
+      background: color-mix(in oklab, var(--bg) 85%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: var(--space-3) var(--space-4);
+      display: grid;
+      grid-template-columns: 1fr auto;
       align-items: center;
-      padding: 10px 20px;
-      background-color: #f4f4f4;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      gap: var(--space-4);
+    }
+    .brand {
+      font-size: var(--step-2);
+      letter-spacing: .02em;
+      font-weight: 600;
     }
 
-    .title {
-      font-size: 20px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 24px;
-      background: none;
-      border: none;
+    .nav-toggle { display: none; }
+    .nav-btn {
+      display: inline-grid; place-items: center;
+      width: 42px; height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: transparent;
       cursor: pointer;
     }
+    .nav-btn span { width: 20px; height: 2px; background: var(--text); position: relative; display: block; }
+    .nav-btn span::before, .nav-btn span::after { content:""; position:absolute; left:0; right:0; height:2px; background:var(--text); }
+    .nav-btn span::before { top:-6px; }
+    .nav-btn span::after { top:6px; }
 
-    .container {
-      padding: 20px;
-    }
-
-    .project {
-      margin-bottom: 60px;
-      transition: all 0.4s ease;
-    }
-
-    .project-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      transition: all 0.4s ease;
-    }
-
-    .project-text,
-    .project-visuals {
-      flex: 1 1 45%;
-      min-width: 300px;
-    }
-
-    .project-image-container {
-      position: relative;
-      text-align: center;
-      margin: 10px 0;
-    }
-
-    .project-image {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    .image-controls {
-      display: flex;
+    nav[aria-label="Primary"] {
+      display: flex; gap: var(--space-5);
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 10px;
     }
 
-    .image-counter {
-      font-size: 14px;
-      color: #333;
-    }
+    .nav-link { color: var(--muted); font-size: var(--step-0); }
+    .nav-link:hover, .nav-link:focus-visible { color: var(--text); }
 
-    .hidden {
-      display: none;
-    }
-
-    .nav-button {
-      cursor: pointer;
-      background-color: #ccc;
-      border: none;
-      padding: 5px 10px;
-      font-size: 16px;
-    }
-
-    .mobile-mode .project-content {
-      flex-direction: column !important;
-    }
-
-    .mobile-mode .project-visuals {
-      order: -1;
-    }
-
-    .mobile-mode .project-title {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 1.4em;
-    }
-
-    
-
-    .mobile-mode .project {
-      border: 1px solid #ddd;
-      padding: 16px;
-      border-radius: 8px;
-      margin-bottom: 30px;
-      background: #fafafa;
-    }
-
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
+    @media (max-width: 900px) {
+      .header-inner { grid-template-columns: auto auto; }
+      nav[aria-label="Primary"] { display: none; }
+      .nav-toggle:checked + label + nav { /* reveal menu when toggled */
+        display: grid; gap: var(--space-3);
+        grid-column: 1 / -1;
+        padding: var(--space-3) 0 var(--space-2);
+        border-top: 1px solid var(--line);
       }
-
-      nav ul {
-        display: none;
-      }
-
-      nav.open ul {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
+      .nav-btn { display: inline-grid; }
     }
 
-.mobile-mode .project-text {
-  position: relative;
-  z-index: 1;
-  background: white;
-  padding: 12px;
-  margin-top: 10px;
-}
-</style>
-  <script>
-    function toggleMenu() {
-      const nav = document.querySelector("nav");
-      nav.classList.toggle("open");
+    /* ------------------------------
+       Sections
+       ------------------------------ */
+    .section { padding: var(--space-7) var(--space-4); }
+    .container { max-width: var(--maxw); margin: 0 auto; }
+    .section h2 { font-size: var(--step-3); line-height: 1.2; margin: 0 0 var(--space-4); }
+    .lede { max-width: 70ch; color: var(--muted); font-size: var(--step-1); }
+
+    /* ------------------------------
+       Projects Grid
+       ------------------------------ */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--space-5);
     }
 
-    function changeImage(projectId, direction) {
-      const project = document.getElementById(projectId);
-      const images = project.getElementsByClassName("project-image");
-      const counter = project.querySelector(".image-counter");
-      let currentIndex = 0;
-      for (let i = 0; i < images.length; i++) {
-        if (!images[i].classList.contains("hidden")) {
-          currentIndex = i;
-          break;
-        }
+    .project-card {
+      grid-column: span 12;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: color-mix(in oklab, var(--bg) 94%, transparent);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .project-card:hover { transform: translateY(-2px); box-shadow: 0 8px 26px color-mix(in oklab, var(--text) 8%, transparent); }
+
+    .project-inner { display: grid; gap: var(--space-5); padding: var(--space-5); }
+
+    .project-title { font-size: var(--step-2); margin: 0 0 var(--space-2); }
+    .project-meta { color: var(--muted); font-size: var(--step--1); display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .project-desc { margin-top: var(--space-3); max-width: 80ch; }
+
+    .project-media { border: 1px solid var(--line); border-radius: 12px; overflow: clip; }
+    .media-frame { position: relative; }
+    .media-frame img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+
+    .carousel-controls { display: flex; align-items: center; justify-content: space-between; padding: var(--space-2) var(--space-3); border-top: 1px solid var(--line); }
+    .carousel-left, .carousel-right {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 10px; background: transparent; cursor: pointer;
+    }
+    .carousel-count { color: var(--muted); font-size: var(--step--1); }
+
+    @media (min-width: 900px) {
+      .project-inner {
+        grid-template-columns: 1.2fr 1fr; align-items: start;
       }
-      images[currentIndex].classList.add("hidden");
-      let newIndex = (currentIndex + direction + images.length) % images.length;
-      images[newIndex].classList.remove("hidden");
-      if (counter) {
-        counter.textContent = `${newIndex + 1} / ${images.length}`;
-      }
+      .project-card.alt .project-inner { grid-template-columns: 1fr 1.2fr; }
+      .project-card.alt .project-text { order: 2; }
+      .project-card.alt .project-media { order: 1; }
     }
 
-    function switchViewMode(mode) {
-      const body = document.body;
-      if (mode === 'mobile') {
-        body.classList.add('mobile-mode');
-        localStorage.setItem('viewMode', 'mobile');
-      } else {
-        body.classList.remove('mobile-mode');
-        localStorage.setItem('viewMode', 'desktop');
-      }
+    /* ------------------------------
+       Contact + Footer
+       ------------------------------ */
+    .contact-card { border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); background: color-mix(in oklab, var(--bg) 94%, transparent); }
+    .contact-card a { text-decoration: underline; text-underline-offset: 2px; }
+
+    footer { border-top: 1px solid var(--line); padding: var(--space-5) var(--space-4); color: var(--muted); }
+    .foot-inner { max-width: var(--maxw); margin: 0 auto; display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+
+    /* ------------------------------
+       Motion preferences
+       ------------------------------ */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
     }
-
-    window.onload = function () {
-      const savedMode = localStorage.getItem('viewMode');
-      if (savedMode) {
-        document.getElementById('view-mode-select').value = savedMode;
-        switchViewMode(savedMode);
-      }
-
-      const projects = document.getElementsByClassName("project");
-      for (let project of projects) {
-        const images = project.getElementsByClassName("project-image");
-        const counter = project.querySelector(".image-counter");
-        if (images.length > 0 && counter) {
-          counter.textContent = `1 / ${images.length}`;
-        }
-      }
-    };
-  </script>
+  </style>
 </head>
 <body>
-  <header>
-    <h1 class="title">Lionel G.S. | Engineering Design + Optimisation</h1>
-    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div style="margin-left: auto; padding-left: 20px;">
-      <label for="view-mode-select">View mode:</label>
-      <select id="view-mode-select" onchange="switchViewMode(this.value)">
-        <option value="desktop">Desktop</option>
-        <option value="mobile">Mobile</option>
-      </select>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="brand">Lionel G.S. — Engineering Design + Optimisation</div>
+
+      <!-- Accessible mobile menu toggle -->
+      <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-hidden="true" />
+      <label for="nav-toggle" class="nav-btn" aria-label="Toggle navigation" aria-controls="site-nav" aria-expanded="false">
+        <span></span>
+      </label>
+
+      <nav id="site-nav" aria-label="Primary">
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <section id="about" class="container">
-    <h2 class="section-title">About Me</h2>
-    <p>
-      Welcome to my portfolio. I am a motivated civil engineer with industrial fabrication and construction management experience, having studied at ETH Zürich. Driven by curiosity about how to optimize sustainable material use/reuse, lengthen structure lifespans, and quantify risks.
-    </p>
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About</h2>
+      <p class="lede">I’m a civil engineer (ETH Zürich) with experience in industrial fabrication and construction management. I explore optimisation, sustainable material (re)use, and durability-driven design to extend structural lifespans and quantify risk.</p>
+    </div>
   </section>
 
-  <section id="projects" class="container">
-    <h2 class="section-title">Projects</h2>
-    <!-- Project blocks inserted below -->
-<div class="project" id="bridge">
-  <div class="project-content">
-    <div class="project-text">
-      <h3 class="project-title">Bridge Design Concept</h3>
-      <p>Conceptual Bridge Design Competition over the Limmat in the city of Zurich, Switzerland. Featuring a compact composite superstructure with S335 Steel and UHPC top deck. The substructure utilizes two integral concrete supports that anchor into pile foundations under the river, where abutments accommodate expansion and contraction from temperature changes.</p>
-      <p><strong>Materiality:</strong> Steel + UHPC</p>
-      <p><strong>Dimensions:</strong> Span 40m</p>
-      <p><strong>Completion Date:</strong> December 2024</p>
-      <p><strong>Supervisor:</strong> Prof. Dr. Walter Kaufmann</p>
-      <p><strong>Collaborators:</strong> Antoine Binggeli</p>
-    </div>
-    <div class="project-visuals">
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('bridge', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('bridge', 1)">&#9655;</button>
-        <span class="image-counter"></span>
-      </div>
-      <div class="project-image-container">
-        <img src="Bridge_1.png" class="project-image" alt="Project image" />
-        <img src="Bridge_2a.png" class="project-image hidden" />
-        <img src="Bridge_2b.png" class="project-image hidden" />
-        <img src="Bridge_3.png" class="project-image hidden" />
-        <img src="Bridge_4.png" class="project-image hidden" />
-        <img src="Bridge_5.png" class="project-image hidden" />
-        <img src="Bridge_6.png" class="project-image hidden" />
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Additional projects inserted -->
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="projects-grid">
 
-<!-- Project: Cello Stand -->
-<div class="project" id="cello-stand">
-  <div class="project-content">
-    <div class="project-text">
-      <h3 class="project-title">Cello Stand</h3>
-      <p>A custom-designed stand for securely holding a cello, focusing on ergonomic accessibility and stability.</p>
-      <p><strong>Materiality:</strong> Steel tubing, foam padding</p>
-      <p><strong>Dimensions:</strong> 80cm x 50cm x 100cm</p>
-      <p><strong>Completion Date:</strong> November 2019</p>
-    </div>
-    <div class="project-visuals">
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('cello-stand', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('cello-stand', 1)">&#9655;</button>
-        <span class="image-counter"></span>
-      </div>
-      <div class="project-image-container">
-        <img src="CELLO_STAND_1_NO_BACKGROUND.png" class="project-image" />
-        <img src="CELLO_STAND_2_NO_BACKGROUND.png" class="project-image hidden" />
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- Bridge -->
+        <article class="project-card" id="bridge">
+          <div class="project-inner">
+            <div class="project-text">
+              <h3 class="project-title">Bridge Design Concept</h3>
+              <div class="project-meta">
+                <span><strong>Materiality:</strong> Steel + UHPC</span>
+                <span><strong>Span:</strong> 40 m</span>
+                <span><strong>Completion:</strong> Dec 2024</span>
+                <span><strong>Supervisor:</strong> Prof. Dr. Walter Kaufmann</span>
+                <span><strong>Collaborator:</strong> Antoine Binggeli</span>
+              </div>
+              <p class="project-desc">Conceptual bridge over the Limmat (Zürich): compact composite superstructure (S335 steel, UHPC deck) on integral concrete supports with pile foundations. Abutments accommodate thermal expansion.</p>
+            </div>
+            <div class="project-media">
+              <div class="media-frame" data-carousel>
+                <img src="Bridge_1.png" alt="Bridge concept rendering" loading="lazy" decoding="async" />
+                <img src="Bridge_2a.png" alt="Bridge detail" loading="lazy" decoding="async" hidden />
+                <img src="Bridge_2b.png" alt="Bridge detail" loading="lazy" decoding="async" hidden />
+                <img src="Bridge_3.png" alt="Bridge model" loading="lazy" decoding="async" hidden />
+                <img src="Bridge_4.png" alt="Bridge section" loading="lazy" decoding="async" hidden />
+                <img src="Bridge_5.png" alt="Bridge elevation" loading="lazy" decoding="async" hidden />
+                <img src="Bridge_6.png" alt="Bridge plan" loading="lazy" decoding="async" hidden />
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
+                <div class="carousel-count" aria-live="polite">1 / 7</div>
+                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              </div>
+            </div>
+          </div>
+        </article>
 
-<!-- Kunsthalle -->
-<div class="project" id="AAA">
-  <div class="project-content">
-    <div class="project-text">
-      <h3 class="project-title">Kunsthalle Zürich AAA Experiments</h3>
-      <p> CNC + Manual Fabrication of Reused Wood Members for Construction of new stage. Responsible for part delivery, logistics, and construction.</p>
-      <p><strong>Materiality:</strong> Reused Timber, Steel Cable</p>
-      <p><strong>Dimensions:</strong> 10m x 20m x 6m</p>
-      <p><strong>Completion Date:</strong> September 2024</p>
-    </div>
-    <div class="project-visuals">
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('AAA', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('AAA', 1)">&#9655;</button>
-        <span class="image-counter"></span>
-      </div>
-      <div class="project-image-container">
-        <img src="AAA_01.jpeg" class="project-image" />
-        <img src="AAA_02.jpeg" class="project-image hidden" />
-        <img src="AAA_03.jpeg" class="project-image hidden" />
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- Cello Stand -->
+        <article class="project-card alt" id="cello-stand">
+          <div class="project-inner">
+            <div class="project-text">
+              <h3 class="project-title">Cello Stand</h3>
+              <div class="project-meta">
+                <span><strong>Materiality:</strong> Steel tubing, foam padding</span>
+                <span><strong>Dimensions:</strong> 80 × 50 × 100 cm</span>
+                <span><strong>Completion:</strong> Nov 2019</span>
+              </div>
+              <p class="project-desc">Custom stand prioritising ergonomic access and stability for a cello.</p>
+            </div>
+            <div class="project-media">
+              <div class="media-frame" data-carousel>
+                <img src="CELLO_STAND_1_NO_BACKGROUND.png" alt="Cello stand view" loading="lazy" decoding="async" />
+                <img src="CELLO_STAND_2_NO_BACKGROUND.png" alt="Cello stand alternate" loading="lazy" decoding="async" hidden />
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
+                <div class="carousel-count" aria-live="polite">1 / 2</div>
+                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              </div>
+            </div>
+          </div>
+        </article>
 
-<!-- Project: Bike Rack -->
-<div class="project" id="bike-rack">
-  <div class="project-content">
-    <div class="project-text">
-      <h3 class="project-title">Modular Milk Crate Bike Rack System</h3>
-      <p>A modular attachment system designed for bicycles to transport milk crates securely.</p>
-      <p><strong>Materiality:</strong> Aluminum frame, steel fasteners</p>
-      <p><strong>Dimensions:</strong> Adjustable sizing for different bike models</p>
-      <p><strong>Completion Date:</strong> March 2020</p>
-    </div>
-    <div class="project-visuals">
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('bike-rack', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('bike-rack', 1)">&#9655;</button>
-        <span class="image-counter"></span>
-      </div>
-      <div class="project-image-container">
-        <img src="IMG_20200722_093953411_HDR.jpg" class="project-image" />
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- Kunsthalle AAA -->
+        <article class="project-card" id="AAA">
+          <div class="project-inner">
+            <div class="project-text">
+              <h3 class="project-title">Kunsthalle Zürich — AAA Experiments</h3>
+              <div class="project-meta">
+                <span><strong>Materiality:</strong> Reused timber, steel cable</span>
+                <span><strong>Size:</strong> 10 × 20 × 6 m</span>
+                <span><strong>Completion:</strong> Sep 2024</span>
+              </div>
+              <p class="project-desc">CNC and manual fabrication of reused wood members for a new stage. Responsibilities included part delivery, logistics, and site construction.</p>
+            </div>
+            <div class="project-media">
+              <div class="media-frame" data-carousel>
+                <img src="AAA_01.jpeg" alt="AAA project photo" loading="lazy" decoding="async" />
+                <img src="AAA_02.jpeg" alt="AAA project photo 2" loading="lazy" decoding="async" hidden />
+                <img src="AAA_03.jpeg" alt="AAA project photo 3" loading="lazy" decoding="async" hidden />
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
+                <div class="carousel-count" aria-live="polite">1 / 3</div>
+                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              </div>
+            </div>
+          </div>
+        </article>
 
-<!-- Project: Barton Restoration -->
-<div class="project" id="barton-restoration">
-  <div class="project-content">
-    <div class="project-text">
-      <h3 class="project-title">Barton Storage Building Renovation</h3>
-      <p>Demolition of existing (non-serviceable) roof and foundation. Planning and execution of new main wind lateral resisting system and construction of replacement structural elements from demolition site 50km away. 21 SQM footprint, steel+wood construction, located in Sonceboz-Sombeval, Switzerland. 877 Kg CO₂ equivalents saved with reused materials.</p>
-      <p><strong>Materiality:</strong> Reclaimed galvanized steel, reclaimed corrugated steel, reused wood</p>
-      <p><strong>Dimensions:</strong> w: 3 m h: 3 m l: 9 m</p>
-      <p><strong>Completion Date:</strong> August 2023</p>
-    </div>
-    <div class="project-visuals">
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('barton-restoration', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('barton-restoration', 1)">&#9655;</button>
-        <span class="image-counter"></span>
-      </div>
-      <div class="project-image-container">
-        <img src="Barton_Pre.jpg" class="project-image" />
-        <img src="Barton_Con.jpg" class="project-image hidden" />
-        <img src="Barton_Con_2.jpg" class="project-image hidden" />
-        <img src="Barton_Post.jpg" class="project-image hidden" />
-        <img src="Barton_View.jpg" class="project-image hidden" />
-        <img src="Barton_srf.JPG" class="project-image hidden" />
-      </div>
-    </div>
-  </div>
-</div>
-    <!-- Project: Concept Dorm -->
-<div class="project" id="concept-dorm">
-  <div class="project-content">
-    <div class="project-text">
-      <h3 class="project-title">Concept Dormitory</h3>
-      <p>Concept Dorm</p>
-      <p><strong>Materiality:</strong> Brick, reinforced concrete, reclaimed wood</p>
-      <p><strong>Dimensions:</strong> [Add dimensions from the Word doc]</p>
-      <p><strong>Completion Date:</strong> [Month, Year]</p>
-    </div>
-    <div class="project-visuals">
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('concept-dorm', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('concept-dorm', 1)">&#9655;</button>
-        <span class="image-counter"></span>
-      </div>
-      <div class="project-image-container">
-        <img src="Floor 1.jpg" class="project-image" />
-        <img src="Floor 3.jpg" class="project-image hidden" />
-        <img src="3d rendergood.jpg" class="project-image hidden" />
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- Bike Rack -->
+        <article class="project-card alt" id="bike-rack">
+          <div class="project-inner">
+            <div class="project-text">
+              <h3 class="project-title">Modular Milk Crate Bike Rack System</h3>
+              <div class="project-meta">
+                <span><strong>Materiality:</strong> Aluminium frame, steel fasteners</span>
+                <span><strong>Completion:</strong> Mar 2020</span>
+              </div>
+              <p class="project-desc">Modular bicycle attachment system for secure transport of crates; adaptable to different frames.</p>
+            </div>
+            <div class="project-media">
+              <div class="media-frame">
+                <img src="IMG_20200722_093953411_HDR.jpg" alt="Bike rack photo" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+        </article>
 
-<!-- Project: Solar Decathlon -->
-<div class="project" id="SD">
-  <div class="project-content">
-    <div class="project-text">
-      <h3 class="project-title">Solar Decathlon Design Competition</h3>
-      <p><strong>Description:</strong> US Department of Energy Solar Decathlon Grand Winner 2022 - New York Harbor School Expansion & Renovation.</p>
-      <p><strong>Background:</strong> This project to expand the New York Harbor School on Governor’s Island focuses on enhancing its unique location and maritime-focused education. The proposal creates new community space, circulation, and connection to the campus through sculpted landscapes, public volumes, and paths. We reach a net-zero design by integrating photovoltaic panels, mindful reuse of construction material, a green roof, geothermal energy piles, a rainwater capture system, and other technologies. Engineering design flood levels and climate conditions were considered through design in section, plant selection, and structural innovations such as the bathtub-style foundation to create a resilient campus.</p>
-      <p><strong>Advisors:</strong> Melody Baglione, Nader Tehrani, Pamela Cabrera, Julian Palacio</p>
-      <p><strong>Collaborators:</strong> Ji Yong Chung, Shannagh Crowe, Tate Liang, Sophia Zhao, Benny Wu, Larry Zeng, Sarah Coraizaca, Samantha Wu, Mizanul Hoque, Amelia Roopnarine</p>
-    </div>
-    <div class="project-visuals">
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('SD', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('SD', 1)">&#9655;</button>
-        <span class="image-counter"></span>
-      </div>
-      <div class="project-image-container">
-        <img src="SD0.jpg" class="project-image" />
-        <img src="SD1.png" class="project-image hidden" />
-        <img src="SD2.png" class="project-image hidden" />
-        <img src="SD3.png" class="project-image hidden" />
-        <img src="SD4.png" class="project-image hidden" />
-        <img src="SD5.png" class="project-image hidden" />
-        <img src="SD6.png" class="project-image hidden" />
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- Barton Restoration -->
+        <article class="project-card" id="barton-restoration">
+          <div class="project-inner">
+            <div class="project-text">
+              <h3 class="project-title">Barton Storage Building Renovation</h3>
+              <div class="project-meta">
+                <span><strong>Materiality:</strong> Reclaimed steel & wood</span>
+                <span><strong>Footprint:</strong> 21 m²</span>
+                <span><strong>Completion:</strong> Aug 2023</span>
+                <span><strong>Embodied carbon saved:</strong> 877 kg CO₂e</span>
+              </div>
+              <p class="project-desc">Demolition of non-serviceable elements; design and execution of new wind lateral system; replacement elements sourced 50 km away. Sonceboz-Sombeval, Switzerland.</p>
+            </div>
+            <div class="project-media">
+              <div class="media-frame" data-carousel>
+                <img src="Barton_Pre.jpg" alt="Barton — pre works" loading="lazy" decoding="async" />
+                <img src="Barton_Con.jpg" alt="Barton — during works" loading="lazy" decoding="async" hidden />
+                <img src="Barton_Con_2.jpg" alt="Barton — during works 2" loading="lazy" decoding="async" hidden />
+                <img src="Barton_Post.jpg" alt="Barton — post works" loading="lazy" decoding="async" hidden />
+                <img src="Barton_View.jpg" alt="Barton — view" loading="lazy" decoding="async" hidden />
+                <img src="Barton_srf.JPG" alt="Barton — site" loading="lazy" decoding="async" hidden />
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
+                <div class="carousel-count" aria-live="polite">1 / 6</div>
+                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              </div>
+            </div>
+          </div>
+        </article>
 
-<!-- Project: CC1 -->
-<div class="project" id="cc1">
-  <div class="project-content">
-    <div class="project-text">
-      <h3 class="project-title">Carbon Creature 1 - Pyrolysis Reactor</h3>
-      <p>Biochar reactor that utilizes mixed gas heating with gas recycling. Bare prototype fitted with thermocouples and emission sensors (NOx + CO2), efficiency of conversion of carboard pyrolysis investigated.</p>
-      <p><strong>Materiality:</strong> Steel</p>
-      <p><strong>Dimensions:</strong> 100cm long, 50cm wide, 100cm tall</p>
-      <p><strong>Completion Date:</strong> Summer 2020</p>
-    </div>
-    <div class="project-visuals">
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('cc1', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('cc1', 1)">&#9655;</button>
-        <span class="image-counter"></span>
-      </div>
-      <div class="project-image-container">
-        <img src="carbon_creature_1_nobackground.png" class="project-image" />
-        <img src="carbon_creature_2_nobackground.png" class="project-image hidden" />
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- Concept Dormitory -->
+        <article class="project-card alt" id="concept-dorm">
+          <div class="project-inner">
+            <div class="project-text">
+              <h3 class="project-title">Concept Dormitory</h3>
+              <div class="project-meta">
+                <span><strong>Materiality:</strong> Brick, RC, reclaimed wood</span>
+              </div>
+              <p class="project-desc">Concept design with floor plans and a 3D massing study.</p>
+            </div>
+            <div class="project-media">
+              <div class="media-frame" data-carousel>
+                <img src="Floor 1.jpg" alt="Concept dorm floor 1" loading="lazy" decoding="async" />
+                <img src="Floor 3.jpg" alt="Concept dorm floor 3" loading="lazy" decoding="async" hidden />
+                <img src="3d rendergood.jpg" alt="Concept dorm render" loading="lazy" decoding="async" hidden />
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
+                <div class="carousel-count" aria-live="polite">1 / 3</div>
+                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              </div>
+            </div>
+          </div>
+        </article>
 
-<!-- Project: Lamp -->
-<div class="project" id="lamp">
-  <div class="project-content">
-    <div class="project-text">
-      <h3 class="project-title">DWWLA Lamp</h3>
-      <p>Vertical lamp made out of reclaimed wooden boards and electrical components. Functions flexibly to house keys and other small hung items on the side, with the wooden boards acting as a medium to affix screws as preferred, at any time.</p>
-      <p><strong>Materiality:</strong> Salvaged construction boards, linear halogen lamp, steel pipe cutoffs</p>
-      <p><strong>Dimensions:</strong> 2m tall, 20cm x 20cm base</p>
-      <p><strong>Completion Date:</strong> June 2024</p>
-    </div>
-    <div class="project-visuals">
-      <div class="image-controls">
-        <button class="nav-button" onclick="changeImage('lamp', -1)">&#9665;</button>
-        <button class="nav-button" onclick="changeImage('lamp', 1)">&#9655;</button>
-        <span class="image-counter"></span>
+        <!-- Solar Decathlon -->
+        <article class="project-card" id="SD">
+          <div class="project-inner">
+            <div class="project-text">
+              <h3 class="project-title">Solar Decathlon — Grand Winner 2022</h3>
+              <div class="project-meta">
+                <span><strong>Advisors:</strong> Baglione, Tehrani, Cabrera, Palacio</span>
+              </div>
+              <p class="project-desc"><strong>NY Harbor School — Expansion & Renovation.</strong> Net‑zero strategies: PV, reused materials, green roof, geothermal energy piles, and rainwater capture. Resilience via flood‑aware sectioning, planting, and a bathtub foundation.</p>
+            </div>
+            <div class="project-media">
+              <div class="media-frame" data-carousel>
+                <img src="SD0.jpg" alt="Solar Decathlon cover" loading="lazy" decoding="async" />
+                <img src="SD1.png" alt="Solar Decathlon sheet 1" loading="lazy" decoding="async" hidden />
+                <img src="SD2.png" alt="Solar Decathlon sheet 2" loading="lazy" decoding="async" hidden />
+                <img src="SD3.png" alt="Solar Decathlon sheet 3" loading="lazy" decoding="async" hidden />
+                <img src="SD4.png" alt="Solar Decathlon sheet 4" loading="lazy" decoding="async" hidden />
+                <img src="SD5.png" alt="Solar Decathlon sheet 5" loading="lazy" decoding="async" hidden />
+                <img src="SD6.png" alt="Solar Decathlon sheet 6" loading="lazy" decoding="async" hidden />
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
+                <div class="carousel-count" aria-live="polite">1 / 7</div>
+                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pyrolysis Reactor -->
+        <article class="project-card alt" id="cc1">
+          <div class="project-inner">
+            <div class="project-text">
+              <h3 class="project-title">Carbon Creature 1 — Pyrolysis Reactor</h3>
+              <div class="project-meta">
+                <span><strong>Materiality:</strong> Steel</span>
+                <span><strong>Size:</strong> 100 × 50 × 100 cm</span>
+                <span><strong>Completion:</strong> Summer 2020</span>
+              </div>
+              <p class="project-desc">Biochar reactor with mixed‑gas heating and gas recycling. Prototype fitted with thermocouples and NOx/CO₂ sensors to study cardboard pyrolysis efficiency.</p>
+            </div>
+            <div class="project-media">
+              <div class="media-frame" data-carousel>
+                <img src="carbon_creature_1_nobackground.png" alt="Pyrolysis reactor" loading="lazy" decoding="async" />
+                <img src="carbon_creature_2_nobackground.png" alt="Pyrolysis reactor alt" loading="lazy" decoding="async" hidden />
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
+                <div class="carousel-count" aria-live="polite">1 / 2</div>
+                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lamp -->
+        <article class="project-card" id="lamp">
+          <div class="project-inner">
+            <div class="project-text">
+              <h3 class="project-title">DWWLA Lamp</h3>
+              <div class="project-meta">
+                <span><strong>Materiality:</strong> Salvaged boards, halogen lamp, steel pipe cut‑offs</span>
+                <span><strong>Size:</strong> 2 m tall; base 20 × 20 cm</span>
+                <span><strong>Completion:</strong> Jun 2024</span>
+              </div>
+              <p class="project-desc">Vertical lamp using reclaimed timber as a flexible mounting medium for small hung items along the side.</p>
+            </div>
+            <div class="project-media">
+              <div class="media-frame" data-carousel>
+                <img src="Lamp DWWLA 01 no background.png" alt="Lamp photo" loading="lazy" decoding="async" />
+                <img src="Lamp DWWLA 02 no background.png" alt="Lamp alternate" loading="lazy" decoding="async" hidden />
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
+                <div class="carousel-count" aria-live="polite">1 / 2</div>
+                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
       </div>
-      <div class="project-image-container">
-        <img src="Lamp DWWLA 01 no background.png" class="project-image" />
-        <img src="Lamp DWWLA 02 no background.png" class="project-image hidden" />
-      </div>
     </div>
-  </div>
-</div>
   </section>
 
-  <section id="contact" class="container">
-    <h2 class="section-title">Contact</h2>
-    <p>
-      For inquiries or project collaborations, please email me at
-      <a href="mailto:unfoldkraft@gmail.com">unfoldkraft@gmail.com</a>.
-    </p>
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact</h2>
+      <div class="contact-card">
+        <p>For inquiries or collaborations, email <a href="mailto:unfoldkraft@gmail.com">unfoldkraft@gmail.com</a>.</p>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 Lionel G.S. | Engineering Design + Optimisation. All Rights Reserved.</p>
+    <div class="foot-inner">
+      <div>© 2025 Lionel G.S. — Engineering Design + Optimisation</div>
+      <div><a href="#about">About</a> · <a href="#projects">Projects</a> · <a href="#contact">Contact</a></div>
+    </div>
   </footer>
+
+  <script>
+    // Accessible carousel for each [data-carousel] block
+    document.querySelectorAll('[data-carousel]').forEach((frame, idx) => {
+      const imgs = Array.from(frame.querySelectorAll('img'));
+      const card = frame.closest('.project-card');
+      const countEl = card.querySelector('.carousel-count');
+      const prev = card.querySelector('[data-prev]');
+      const next = card.querySelector('[data-next]');
+      let i = 0;
+
+      function render() {
+        imgs.forEach((img, k) => { img.hidden = k !== i; });
+        if (countEl) countEl.textContent = `${i + 1} / ${imgs.length}`;
+      }
+
+      function go(d) { i = (i + d + imgs.length) % imgs.length; render(); }
+
+      prev?.addEventListener('click', () => go(-1));
+      next?.addEventListener('click', () => go(1));
+
+      // Keyboard support
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') go(-1);
+        if (e.key === 'ArrowRight') go(1);
+      });
+
+      // Initial
+      render();
+    });
+
+    // Keep aria-expanded in sync for the nav toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navLabel = document.querySelector('label[for="nav-toggle"]');
+    const siteNav = document.getElementById('site-nav');
+    function syncNavAria() {
+      const expanded = navToggle.checked;
+      navLabel.setAttribute('aria-expanded', expanded);
+    }
+    navToggle?.addEventListener('change', syncNavAria);
+    syncNavAria();
+  </script>
 </body>
 </html>
