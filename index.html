@@ -294,7 +294,10 @@
       <!-- Enquiry dialog -->
       <dialog id="enquiryDialog" class="enquiry">
         <form method="dialog" class="enquiry-form" id="enquiryForm">
-          <h3>Enquiry</h3>
+          <header class="enquiry-head" style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;">
+            <h3 style="margin:0;">Enquiry</h3>
+            <button type="button" class="btn" id="enqClose" aria-label="Close">&times;</button>
+          </header>
           <p class="muted" id="enquiryItem">Item: —</p>
 
           <div class="grid-2">
@@ -314,7 +317,7 @@
           </label>
 
           <div class="enquiry-actions">
-            <button class="btn ghost" value="cancel">Cancel</button>
+            <button class="btn ghost" type="button" id="enqCancel">Cancel</button>
             <a class="btn" id="mailtoBtn" href="#">Send email</a>
           </div>
         </form>
@@ -372,6 +375,26 @@
         }
       });
     });
+
+    // Explicit close controls
+    const cancelBtn = document.getElementById('enqCancel');
+    const closeBtn = document.getElementById('enqClose');
+
+    cancelBtn?.addEventListener('click', () => dlg.close());
+    closeBtn?.addEventListener('click', () => dlg.close());
+
+    // Backdrop click-to-close
+    if (dlg) {
+      dlg.addEventListener('click', (e) => {
+        const rect = dlg.getBoundingClientRect();
+        const inside = e.clientX >= rect.left && e.clientX <= rect.right &&
+                       e.clientY >= rect.top  && e.clientY <= rect.bottom;
+        if (!inside) dlg.close();
+      });
+    }
+
+    // Optional: close after clicking “Send email”
+    mailtoBtn?.addEventListener('click', () => dlg.close());
   </script>
 </body>
 </html>
