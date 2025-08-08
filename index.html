@@ -6,203 +6,17 @@
   <title>Lionel G.S. | Engineering Design + Optimisation</title>
   <meta name="color-scheme" content="light dark" />
   <meta name="description" content="Portfolio of Lionel G.S. — engineering design and optimisation projects." />
-  <style>
-    /* ------------------------------
-       Architecture-inspired system
-       ------------------------------ */
-    :root {
-      --bg: #ffffff;
-      --text: #111213;
-      --muted: #6b6f76;
-      --line: #e8eaed;
-      --brand: #0a0a0a; /* restrained, monochrome */
-      --accent: #3b82f6; /* used very sparingly */
-
-      --radius: 14px;
-      --space-1: .25rem;
-      --space-2: .5rem;
-      --space-3: .75rem;
-      --space-4: 1rem;
-      --space-5: 1.5rem;
-      --space-6: 2rem;
-      --space-7: 3rem;
-      --space-8: 4rem;
-
-      --maxw: 1200px;
-
-      /* Fluid type — scales between mobile/desktop */
-      --step--1: clamp(.78rem, .72rem + .2vw, .9rem);
-      --step-0: clamp(.95rem, .9rem + .3vw, 1.05rem);
-      --step-1: clamp(1.1rem, 1.05rem + .4vw, 1.25rem);
-      --step-2: clamp(1.35rem, 1.25rem + .6vw, 1.6rem);
-      --step-3: clamp(1.7rem, 1.55rem + 1vw, 2.1rem);
-      --step-4: clamp(2.1rem, 1.9rem + 1.4vw, 2.7rem);
-      --step-5: clamp(2.6rem, 2.3rem + 1.8vw, 3.4rem);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b0c0d;
-        --text: #e9eaec;
-        --muted: #a3a7ad;
-        --line: #1b1d20;
-        --brand: #e9eaec;
-      }
-    }
-
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-      font-size: var(--step-0);
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; height: auto; display: block; }
-
-    /* ------------------------------
-       Header / Navigation
-       ------------------------------ */
-    .site-header {
-      position: sticky; top: 0; z-index: 20;
-      backdrop-filter: saturate(140%) blur(6px);
-      background: color-mix(in oklab, var(--bg) 85%, transparent);
-      border-bottom: 1px solid var(--line);
-    }
-    .header-inner {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: var(--space-3) var(--space-4);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: var(--space-4);
-    }
-    .brand {
-      font-size: var(--step-2);
-      letter-spacing: .02em;
-      font-weight: 600;
-    }
-
-    .nav-toggle { display: none; }
-    .nav-btn {
-      display: inline-grid; place-items: center;
-      width: 42px; height: 42px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: transparent;
-      cursor: pointer;
-    }
-    .nav-btn span { width: 20px; height: 2px; background: var(--text); position: relative; display: block; }
-    .nav-btn span::before, .nav-btn span::after { content:""; position:absolute; left:0; right:0; height:2px; background:var(--text); }
-    .nav-btn span::before { top:-6px; }
-    .nav-btn span::after { top:6px; }
-
-    nav[aria-label="Primary"] {
-      display: flex; gap: var(--space-5);
-      align-items: center;
-    }
-
-    .nav-link { color: var(--muted); font-size: var(--step-0); }
-    .nav-link:hover, .nav-link:focus-visible { color: var(--text); }
-
-    @media (max-width: 900px) {
-      .header-inner { grid-template-columns: auto auto; }
-      nav[aria-label="Primary"] { display: none; }
-      .nav-toggle:checked + label + nav { /* reveal menu when toggled */
-        display: grid; gap: var(--space-3);
-        grid-column: 1 / -1;
-        padding: var(--space-3) 0 var(--space-2);
-        border-top: 1px solid var(--line);
-      }
-      .nav-btn { display: inline-grid; }
-    }
-
-    /* ------------------------------
-       Sections
-       ------------------------------ */
-    .section { padding: var(--space-7) var(--space-4); }
-    .container { max-width: var(--maxw); margin: 0 auto; }
-    .section h2 { font-size: var(--step-3); line-height: 1.2; margin: 0 0 var(--space-4); }
-    .lede { max-width: 70ch; color: var(--muted); font-size: var(--step-1); }
-
-    /* ------------------------------
-       Projects Grid
-       ------------------------------ */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: var(--space-5);
-    }
-
-    .project-card {
-      grid-column: span 12;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: color-mix(in oklab, var(--bg) 94%, transparent);
-      transition: transform .3s ease, box-shadow .3s ease;
-    }
-    .project-card:hover { transform: translateY(-2px); box-shadow: 0 8px 26px color-mix(in oklab, var(--text) 8%, transparent); }
-
-    .project-inner { display: grid; gap: var(--space-5); padding: var(--space-5); }
-
-    .project-title { font-size: var(--step-2); margin: 0 0 var(--space-2); }
-    .project-meta { color: var(--muted); font-size: var(--step--1); display: flex; flex-wrap: wrap; gap: var(--space-3); }
-    .project-desc { margin-top: var(--space-3); max-width: 80ch; }
-
-    .project-media { border: 1px solid var(--line); border-radius: 12px; overflow: clip; }
-    .media-frame { position: relative; }
-    .media-frame img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
-
-    .carousel-controls { display: flex; align-items: center; justify-content: space-between; padding: var(--space-2) var(--space-3); border-top: 1px solid var(--line); }
-    .carousel-left, .carousel-right {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 10px; background: transparent; cursor: pointer;
-    }
-    .carousel-count { color: var(--muted); font-size: var(--step--1); }
-
-    @media (min-width: 900px) {
-      .project-inner {
-        grid-template-columns: 1.2fr 1fr; align-items: start;
-      }
-      .project-card.alt .project-inner { grid-template-columns: 1fr 1.2fr; }
-      .project-card.alt .project-text { order: 2; }
-      .project-card.alt .project-media { order: 1; }
-    }
-
-    /* ------------------------------
-       Contact + Footer
-       ------------------------------ */
-    .contact-card { border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-6); background: color-mix(in oklab, var(--bg) 94%, transparent); }
-    .contact-card a { text-decoration: underline; text-underline-offset: 2px; }
-
-    footer { border-top: 1px solid var(--line); padding: var(--space-5) var(--space-4); color: var(--muted); }
-    .foot-inner { max-width: var(--maxw); margin: 0 auto; display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
-
-    /* ------------------------------
-       Motion preferences
-       ------------------------------ */
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
-    }
-  </style>
+  <link rel="stylesheet" href="site.css" />
 </head>
 <body>
   <!-- Header -->
   <header class="site-header" role="banner">
     <div class="header-inner">
-      <div class="brand">Lionel G.S. — Engineering Design + Optimisation</div>
+      <a class="brand" href="#">Lionel G.S. — Engineering Design + Optimisation</a>
 
-      <!-- Accessible mobile menu toggle -->
+      <!-- Mobile menu (no JS) -->
       <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-hidden="true" />
-      <label for="nav-toggle" class="nav-btn" aria-label="Toggle navigation" aria-controls="site-nav" aria-expanded="false">
-        <span></span>
-      </label>
+      <label for="nav-toggle" class="nav-btn" aria-label="Toggle navigation" aria-controls="site-nav" aria-expanded="false"><span></span></label>
 
       <nav id="site-nav" aria-label="Primary">
         <a class="nav-link" href="#about">About</a>
@@ -216,7 +30,7 @@
   <section id="about" class="section">
     <div class="container">
       <h2>About</h2>
-      <p class="lede">I’m a civil engineer (ETH Zürich) with experience in industrial fabrication and construction management. I explore optimisation, sustainable material (re)use, and durability-driven design to extend structural lifespans and quantify risk.</p>
+      <p class="lede">I’m a civil engineer (ETH Zürich) with experience in industrial fabrication and construction management. I explore optimisation, sustainable material (re)use, and durability‑driven design to extend structural lifespans and quantify risk.</p>
     </div>
   </section>
 
@@ -241,19 +55,14 @@
               <p class="project-desc">Conceptual bridge over the Limmat (Zürich): compact composite superstructure (S335 steel, UHPC deck) on integral concrete supports with pile foundations. Abutments accommodate thermal expansion.</p>
             </div>
             <div class="project-media">
-              <div class="media-frame" data-carousel>
-                <img src="Bridge_1.png" alt="Bridge concept rendering" loading="lazy" decoding="async" />
-                <img src="Bridge_2a.png" alt="Bridge detail" loading="lazy" decoding="async" hidden />
-                <img src="Bridge_2b.png" alt="Bridge detail" loading="lazy" decoding="async" hidden />
-                <img src="Bridge_3.png" alt="Bridge model" loading="lazy" decoding="async" hidden />
-                <img src="Bridge_4.png" alt="Bridge section" loading="lazy" decoding="async" hidden />
-                <img src="Bridge_5.png" alt="Bridge elevation" loading="lazy" decoding="async" hidden />
-                <img src="Bridge_6.png" alt="Bridge plan" loading="lazy" decoding="async" hidden />
-              </div>
-              <div class="carousel-controls">
-                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
-                <div class="carousel-count" aria-live="polite">1 / 7</div>
-                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              <div class="media-grid">
+                <img src="Bridge_1.png" alt="Bridge concept rendering" />
+                <img src="Bridge_2a.png" alt="Bridge detail a" />
+                <img src="Bridge_2b.png" alt="Bridge detail b" />
+                <img src="Bridge_3.png" alt="Bridge model" />
+                <img src="Bridge_4.png" alt="Bridge section" />
+                <img src="Bridge_5.png" alt="Bridge elevation" />
+                <img src="Bridge_6.png" alt="Bridge plan" />
               </div>
             </div>
           </div>
@@ -272,14 +81,9 @@
               <p class="project-desc">Custom stand prioritising ergonomic access and stability for a cello.</p>
             </div>
             <div class="project-media">
-              <div class="media-frame" data-carousel>
-                <img src="CELLO_STAND_1_NO_BACKGROUND.png" alt="Cello stand view" loading="lazy" decoding="async" />
-                <img src="CELLO_STAND_2_NO_BACKGROUND.png" alt="Cello stand alternate" loading="lazy" decoding="async" hidden />
-              </div>
-              <div class="carousel-controls">
-                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
-                <div class="carousel-count" aria-live="polite">1 / 2</div>
-                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              <div class="media-grid">
+                <img src="CELLO_STAND_1_NO_BACKGROUND.png" alt="Cello stand view" />
+                <img src="CELLO_STAND_2_NO_BACKGROUND.png" alt="Cello stand alternate" />
               </div>
             </div>
           </div>
@@ -298,15 +102,10 @@
               <p class="project-desc">CNC and manual fabrication of reused wood members for a new stage. Responsibilities included part delivery, logistics, and site construction.</p>
             </div>
             <div class="project-media">
-              <div class="media-frame" data-carousel>
-                <img src="AAA_01.jpeg" alt="AAA project photo" loading="lazy" decoding="async" />
-                <img src="AAA_02.jpeg" alt="AAA project photo 2" loading="lazy" decoding="async" hidden />
-                <img src="AAA_03.jpeg" alt="AAA project photo 3" loading="lazy" decoding="async" hidden />
-              </div>
-              <div class="carousel-controls">
-                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
-                <div class="carousel-count" aria-live="polite">1 / 3</div>
-                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              <div class="media-grid">
+                <img src="AAA_01.jpeg" alt="AAA project photo 1" />
+                <img src="AAA_02.jpeg" alt="AAA project photo 2" />
+                <img src="AAA_03.jpeg" alt="AAA project photo 3" />
               </div>
             </div>
           </div>
@@ -324,8 +123,8 @@
               <p class="project-desc">Modular bicycle attachment system for secure transport of crates; adaptable to different frames.</p>
             </div>
             <div class="project-media">
-              <div class="media-frame">
-                <img src="IMG_20200722_093953411_HDR.jpg" alt="Bike rack photo" loading="lazy" decoding="async" />
+              <div class="media-grid">
+                <img src="IMG_20200722_093953411_HDR.jpg" alt="Bike rack photo" />
               </div>
             </div>
           </div>
@@ -345,18 +144,13 @@
               <p class="project-desc">Demolition of non-serviceable elements; design and execution of new wind lateral system; replacement elements sourced 50 km away. Sonceboz-Sombeval, Switzerland.</p>
             </div>
             <div class="project-media">
-              <div class="media-frame" data-carousel>
-                <img src="Barton_Pre.jpg" alt="Barton — pre works" loading="lazy" decoding="async" />
-                <img src="Barton_Con.jpg" alt="Barton — during works" loading="lazy" decoding="async" hidden />
-                <img src="Barton_Con_2.jpg" alt="Barton — during works 2" loading="lazy" decoding="async" hidden />
-                <img src="Barton_Post.jpg" alt="Barton — post works" loading="lazy" decoding="async" hidden />
-                <img src="Barton_View.jpg" alt="Barton — view" loading="lazy" decoding="async" hidden />
-                <img src="Barton_srf.JPG" alt="Barton — site" loading="lazy" decoding="async" hidden />
-              </div>
-              <div class="carousel-controls">
-                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
-                <div class="carousel-count" aria-live="polite">1 / 6</div>
-                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              <div class="media-grid">
+                <img src="Barton_Pre.jpg" alt="Barton — pre works" />
+                <img src="Barton_Con.jpg" alt="Barton — during works" />
+                <img src="Barton_Con_2.jpg" alt="Barton — during works 2" />
+                <img src="Barton_Post.jpg" alt="Barton — post works" />
+                <img src="Barton_View.jpg" alt="Barton — view" />
+                <img src="Barton_srf.JPG" alt="Barton — site" />
               </div>
             </div>
           </div>
@@ -373,15 +167,10 @@
               <p class="project-desc">Concept design with floor plans and a 3D massing study.</p>
             </div>
             <div class="project-media">
-              <div class="media-frame" data-carousel>
-                <img src="Floor 1.jpg" alt="Concept dorm floor 1" loading="lazy" decoding="async" />
-                <img src="Floor 3.jpg" alt="Concept dorm floor 3" loading="lazy" decoding="async" hidden />
-                <img src="3d rendergood.jpg" alt="Concept dorm render" loading="lazy" decoding="async" hidden />
-              </div>
-              <div class="carousel-controls">
-                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
-                <div class="carousel-count" aria-live="polite">1 / 3</div>
-                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              <div class="media-grid">
+                <img src="Floor 1.jpg" alt="Concept dorm floor 1" />
+                <img src="Floor 3.jpg" alt="Concept dorm floor 3" />
+                <img src="3d rendergood.jpg" alt="Concept dorm render" />
               </div>
             </div>
           </div>
@@ -398,19 +187,14 @@
               <p class="project-desc"><strong>NY Harbor School — Expansion & Renovation.</strong> Net‑zero strategies: PV, reused materials, green roof, geothermal energy piles, and rainwater capture. Resilience via flood‑aware sectioning, planting, and a bathtub foundation.</p>
             </div>
             <div class="project-media">
-              <div class="media-frame" data-carousel>
-                <img src="SD0.jpg" alt="Solar Decathlon cover" loading="lazy" decoding="async" />
-                <img src="SD1.png" alt="Solar Decathlon sheet 1" loading="lazy" decoding="async" hidden />
-                <img src="SD2.png" alt="Solar Decathlon sheet 2" loading="lazy" decoding="async" hidden />
-                <img src="SD3.png" alt="Solar Decathlon sheet 3" loading="lazy" decoding="async" hidden />
-                <img src="SD4.png" alt="Solar Decathlon sheet 4" loading="lazy" decoding="async" hidden />
-                <img src="SD5.png" alt="Solar Decathlon sheet 5" loading="lazy" decoding="async" hidden />
-                <img src="SD6.png" alt="Solar Decathlon sheet 6" loading="lazy" decoding="async" hidden />
-              </div>
-              <div class="carousel-controls">
-                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
-                <div class="carousel-count" aria-live="polite">1 / 7</div>
-                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              <div class="media-grid">
+                <img src="SD0.jpg" alt="Solar Decathlon cover" />
+                <img src="SD1.png" alt="Solar Decathlon sheet 1" />
+                <img src="SD2.png" alt="Solar Decathlon sheet 2" />
+                <img src="SD3.png" alt="Solar Decathlon sheet 3" />
+                <img src="SD4.png" alt="Solar Decathlon sheet 4" />
+                <img src="SD5.png" alt="Solar Decathlon sheet 5" />
+                <img src="SD6.png" alt="Solar Decathlon sheet 6" />
               </div>
             </div>
           </div>
@@ -429,14 +213,9 @@
               <p class="project-desc">Biochar reactor with mixed‑gas heating and gas recycling. Prototype fitted with thermocouples and NOx/CO₂ sensors to study cardboard pyrolysis efficiency.</p>
             </div>
             <div class="project-media">
-              <div class="media-frame" data-carousel>
-                <img src="carbon_creature_1_nobackground.png" alt="Pyrolysis reactor" loading="lazy" decoding="async" />
-                <img src="carbon_creature_2_nobackground.png" alt="Pyrolysis reactor alt" loading="lazy" decoding="async" hidden />
-              </div>
-              <div class="carousel-controls">
-                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
-                <div class="carousel-count" aria-live="polite">1 / 2</div>
-                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              <div class="media-grid">
+                <img src="carbon_creature_1_nobackground.png" alt="Pyrolysis reactor" />
+                <img src="carbon_creature_2_nobackground.png" alt="Pyrolysis reactor alt" />
               </div>
             </div>
           </div>
@@ -455,14 +234,9 @@
               <p class="project-desc">Vertical lamp using reclaimed timber as a flexible mounting medium for small hung items along the side.</p>
             </div>
             <div class="project-media">
-              <div class="media-frame" data-carousel>
-                <img src="Lamp DWWLA 01 no background.png" alt="Lamp photo" loading="lazy" decoding="async" />
-                <img src="Lamp DWWLA 02 no background.png" alt="Lamp alternate" loading="lazy" decoding="async" hidden />
-              </div>
-              <div class="carousel-controls">
-                <button class="carousel-left" aria-label="Previous image" data-prev>◀</button>
-                <div class="carousel-count" aria-live="polite">1 / 2</div>
-                <button class="carousel-right" aria-label="Next image" data-next>▶</button>
+              <div class="media-grid">
+                <img src="Lamp DWWLA 01 no background.png" alt="Lamp photo" />
+                <img src="Lamp DWWLA 02 no background.png" alt="Lamp alternate" />
               </div>
             </div>
           </div>
@@ -485,50 +259,8 @@
   <footer>
     <div class="foot-inner">
       <div>© 2025 Lionel G.S. — Engineering Design + Optimisation</div>
-      <div><a href="#about">About</a> · <a href="#projects">Projects</a> · <a href="#contact">Contact</a></div>
+      <div class="foot-nav"><a href="#about">About</a> · <a href="#projects">Projects</a> · <a href="#contact">Contact</a></div>
     </div>
   </footer>
-
-  <script>
-    // Accessible carousel for each [data-carousel] block
-    document.querySelectorAll('[data-carousel]').forEach((frame, idx) => {
-      const imgs = Array.from(frame.querySelectorAll('img'));
-      const card = frame.closest('.project-card');
-      const countEl = card.querySelector('.carousel-count');
-      const prev = card.querySelector('[data-prev]');
-      const next = card.querySelector('[data-next]');
-      let i = 0;
-
-      function render() {
-        imgs.forEach((img, k) => { img.hidden = k !== i; });
-        if (countEl) countEl.textContent = `${i + 1} / ${imgs.length}`;
-      }
-
-      function go(d) { i = (i + d + imgs.length) % imgs.length; render(); }
-
-      prev?.addEventListener('click', () => go(-1));
-      next?.addEventListener('click', () => go(1));
-
-      // Keyboard support
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') go(-1);
-        if (e.key === 'ArrowRight') go(1);
-      });
-
-      // Initial
-      render();
-    });
-
-    // Keep aria-expanded in sync for the nav toggle
-    const navToggle = document.getElementById('nav-toggle');
-    const navLabel = document.querySelector('label[for="nav-toggle"]');
-    const siteNav = document.getElementById('site-nav');
-    function syncNavAria() {
-      const expanded = navToggle.checked;
-      navLabel.setAttribute('aria-expanded', expanded);
-    }
-    navToggle?.addEventListener('change', syncNavAria);
-    syncNavAria();
-  </script>
 </body>
 </html>
