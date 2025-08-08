@@ -150,6 +150,61 @@ a:hover { text-decoration: underline; text-underline-offset: 2px; }
 }
 .media-grid img { width: 100%; height: auto; display: block; }
 
+/* Shop */
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+}
+.product-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: color-mix(in oklab, var(--bg) 96%, transparent);
+  transition: transform .2s ease, box-shadow .2s ease;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px color-mix(in oklab, var(--text) 8%, transparent);
+}
+.product-media img { width: 100%; height: auto; display: block; aspect-ratio: 4/3; object-fit: cover; }
+.product-body { padding: var(--space-4); display: grid; gap: var(--space-3); }
+.product-title { font-size: var(--step-1); margin: 0; }
+.product-meta { display: flex; gap: var(--space-3); align-items: center; }
+.badge {
+  display: inline-block; padding: 0.25rem 0.5rem;
+  border: 1px solid var(--line); border-radius: 999px;
+  font-size: var(--step--1);
+}
+.muted { color: var(--muted); font-size: var(--step--1); }
+.product-desc { color: var(--text); }
+.product-actions { margin-top: var(--space-2); }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.6rem 0.9rem; border-radius: 10px;
+  border: 1px solid var(--line); background: transparent; cursor: pointer;
+  text-decoration: none;
+}
+.btn:hover { background: color-mix(in oklab, var(--bg) 92%, transparent); }
+.btn.ghost { background: transparent; }
+
+/* Dialog */
+.enquiry::backdrop { background: rgba(0,0,0,.25); backdrop-filter: blur(2px); }
+.enquiry { border: 1px solid var(--line); border-radius: var(--radius); padding: 0; width: min(640px, 92vw); }
+.enquiry-form { padding: var(--space-5); display: grid; gap: var(--space-4); }
+.enquiry-form h3 { margin: 0; font-size: var(--step-2); }
+.enquiry-form label { display: grid; gap: .35rem; }
+.enquiry-form input, .enquiry-form textarea {
+  width: 100%; padding: .7rem .8rem; border-radius: 10px; border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--bg) 96%, transparent); color: var(--text);
+}
+.grid-2 { display: grid; gap: var(--space-3); grid-template-columns: 1fr; }
+@media (min-width: 700px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+.enquiry-actions { display: flex; gap: var(--space-3); justify-content: flex-end; }
+
 /* Contact & Footer */
 .contact-card {
   border: 1px solid var(--line);

@@ -21,6 +21,7 @@
       <nav id="site-nav" aria-label="Primary">
         <a class="nav-link" href="#about">About</a>
         <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#shop">Shop</a>
         <a class="nav-link" href="#contact">Contact</a>
       </nav>
     </div>
@@ -246,6 +247,81 @@
     </div>
   </section>
 
+  <!-- Shop -->
+  <section id="shop" class="section">
+    <div class="container">
+      <h2>Shop</h2>
+      <p class="lede">Occasional one‑off objects and prototypes. If you’re interested, click “Enquire” to send me a note with the item pre‑filled.</p>
+
+      <div class="shop-grid">
+        <!-- Example product 1 -->
+        <article class="product-card" data-sku="DWWLA-001" data-title="DWWLA Lamp" data-price="CHF 120" data-size="2 m × 20 × 20 cm" data-condition="Used / refurbished" data-location="Zürich 8050">
+          <div class="product-media">
+            <img src="Lamp DWWLA 01 no background.png" alt="DWWLA Lamp front" />
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">DWWLA Lamp</h3>
+            <div class="product-meta">
+              <span class="badge">CHF 120</span>
+              <span class="muted">2 m × 20 × 20 cm</span>
+            </div>
+            <p class="product-desc">Vertical lamp made of reclaimed boards and a linear halogen fixture. Local pickup preferred.</p>
+            <div class="product-actions">
+              <button class="btn" data-enquire>Enquire</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Example product 2 -->
+        <article class="product-card" data-sku="STAND-001" data-title="Cello Stand" data-price="CHF 80" data-size="80 × 50 × 100 cm" data-condition="Used" data-location="Zürich 8050">
+          <div class="product-media">
+            <img src="CELLO_STAND_1_NO_BACKGROUND.png" alt="Cello stand" />
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">Cello Stand</h3>
+            <div class="product-meta">
+              <span class="badge">CHF 80</span>
+              <span class="muted">80 × 50 × 100 cm</span>
+            </div>
+            <p class="product-desc">Custom steel tubing stand with foam padding for protection.</p>
+            <div class="product-actions">
+              <button class="btn" data-enquire>Enquire</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Enquiry dialog -->
+      <dialog id="enquiryDialog" class="enquiry">
+        <form method="dialog" class="enquiry-form" id="enquiryForm">
+          <h3>Enquiry</h3>
+          <p class="muted" id="enquiryItem">Item: —</p>
+
+          <div class="grid-2">
+            <label>
+              <span>Your name</span>
+              <input type="text" id="enqName" placeholder="Jane Doe" required />
+            </label>
+            <label>
+              <span>Your email</span>
+              <input type="email" id="enqEmail" placeholder="you@example.com" required />
+            </label>
+          </div>
+
+          <label>
+            <span>Message</span>
+            <textarea id="enqMsg" rows="5" placeholder="Hi, I’m interested in …"></textarea>
+          </label>
+
+          <div class="enquiry-actions">
+            <button class="btn ghost" value="cancel">Cancel</button>
+            <a class="btn" id="mailtoBtn" href="#">Send email</a>
+          </div>
+        </form>
+      </dialog>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section id="contact" class="section">
     <div class="container">
@@ -259,8 +335,43 @@
   <footer>
     <div class="foot-inner">
       <div>© 2025 Lionel G.S. — Engineering Design + Optimisation</div>
-      <div class="foot-nav"><a href="#about">About</a> · <a href="#projects">Projects</a> · <a href="#contact">Contact</a></div>
+      <div class="foot-nav"><a href="#about">About</a> · <a href="#projects">Projects</a> · <a href="#shop">Shop</a> · <a href="#contact">Contact</a></div>
     </div>
   </footer>
+
+  <script>
+    // Enquiry dialog logic (mailto, no backend needed)
+    const dlg = document.getElementById('enquiryDialog');
+    const mailtoBtn = document.getElementById('mailtoBtn');
+    const itemEl = document.getElementById('enquiryItem');
+    const nameEl = document.getElementById('enqName');
+    const emailEl = document.getElementById('enqEmail');
+    const msgEl = document.getElementById('enqMsg');
+
+    document.querySelectorAll('[data-enquire]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.product-card');
+        const title = card.dataset.title;
+        const sku = card.dataset.sku;
+        const price = card.dataset.price;
+        const size = card.dataset.size;
+        const condition = card.dataset.condition;
+        const location = card.dataset.location;
+
+        itemEl.textContent = `Item: ${title} (SKU ${sku}) — ${price}`;
+
+        const subject = encodeURIComponent(`[Enquiry] ${title} — ${sku}`);
+        const template = `Hello Lionel,%0D%0A%0D%0AI'm interested in the following item:%0D%0A- Title: ${title}%0D%0A- SKU: ${sku}%0D%0A- Price: ${price}%0D%0A- Size: ${size}%0D%0A- Condition: ${condition}%0D%0A- Location: ${location}%0D%0A%0D%0AMy details:%0D%0AName: %7Benter name%7D%0D%0AEmail: %7Benter email%7D%0D%0A%0D%0AThanks!`;
+        mailtoBtn.href = `mailto:unfoldkraft@gmail.com?subject=${subject}&body=${template}`;
+
+        if (typeof dlg.showModal === 'function') {
+          dlg.showModal();
+        } else {
+          // Fallback: jump straight to mailto
+          window.location.href = mailtoBtn.href;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
