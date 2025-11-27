@@ -31,7 +31,7 @@
   <section id="about" class="section">
     <div class="container">
       <h2>About</h2>
-      <p class="lede">I’m a civil engineer (ETH Zürich) with experience in industrial fabrication and construction management. I explore optimisation, sustainable material (re)use, and durability‑driven design to extend structural lifespans and quantify risk.</p>
+      <p class="lede">I’m a civil engineer (ETH Zürich) with experience in industrial fabrication and construction management. I explore optimisation, sustainable material (re)use, and durability-driven design to extend structural lifespans and quantify risk.</p>
     </div>
   </section>
 
@@ -185,7 +185,7 @@
               <div class="project-meta">
                 <span><strong>Advisors:</strong> Baglione, Tehrani, Cabrera, Palacio</span>
               </div>
-              <p class="project-desc"><strong>NY Harbor School — Expansion & Renovation.</strong> Net‑zero strategies: PV, reused materials, green roof, geothermal energy piles, and rainwater capture. Resilience via flood‑aware sectioning, planting, and a bathtub foundation.</p>
+              <p class="project-desc"><strong>NY Harbor School — Expansion & Renovation.</strong> Net-zero strategies: PV, reused materials, green roof, geothermal energy piles, and rainwater capture. Resilience via flood-aware sectioning, planting, and a bathtub foundation.</p>
             </div>
             <div class="project-media">
               <div class="media-grid">
@@ -211,7 +211,7 @@
                 <span><strong>Size:</strong> 100 × 50 × 100 cm</span>
                 <span><strong>Completion:</strong> Summer 2020</span>
               </div>
-              <p class="project-desc">Biochar reactor with mixed‑gas heating and gas recycling. Prototype fitted with thermocouples and NOx/CO₂ sensors to study cardboard pyrolysis efficiency.</p>
+              <p class="project-desc">Biochar reactor with mixed-gas heating and gas recycling. Prototype fitted with thermocouples and NOx/CO₂ sensors to study cardboard pyrolysis efficiency.</p>
             </div>
             <div class="project-media">
               <div class="media-grid">
@@ -228,7 +228,7 @@
             <div class="project-text">
               <h3 class="project-title">DWWLA Lamp</h3>
               <div class="project-meta">
-                <span><strong>Materiality:</strong> Salvaged boards, halogen lamp, steel pipe cut‑offs</span>
+                <span><strong>Materiality:</strong> Salvaged boards, halogen lamp, steel pipe cut-offs</span>
                 <span><strong>Size:</strong> 2 m tall; base 20 × 20 cm</span>
                 <span><strong>Completion:</strong> Jun 2024</span>
               </div>
@@ -251,7 +251,7 @@
   <section id="shop" class="section">
     <div class="container">
       <h2>Shop</h2>
-      <p class="lede">Occasional one‑off objects and prototypes. If you’re interested, click “Enquire” to send me a note with the item pre‑filled.</p>
+      <p class="lede">Occasional one-off objects and prototypes. If you’re interested, please get in touch via the contact details below.</p>
 
       <div class="shop-grid">
         <!-- Example product 1 -->
@@ -266,9 +266,7 @@
               <span class="muted">2 m × 20 × 20 cm</span>
             </div>
             <p class="product-desc">Vertical lamp made of reclaimed boards and a linear halogen fixture. Local pickup preferred.</p>
-            <div class="product-actions">
-              <button class="btn" data-enquire>Enquire</button>
-            </div>
+            <!-- Enquiry button removed -->
           </div>
         </article>
 
@@ -284,44 +282,12 @@
               <span class="muted">80 × 50 × 100 cm</span>
             </div>
             <p class="product-desc">Custom steel tubing stand with foam padding for protection.</p>
-            <div class="product-actions">
-              <button class="btn" data-enquire>Enquire</button>
-            </div>
+            <!-- Enquiry button removed -->
           </div>
         </article>
       </div>
 
-      <!-- Enquiry dialog -->
-      <dialog id="enquiryDialog" class="enquiry">
-        <form method="dialog" class="enquiry-form" id="enquiryForm">
-          <header class="enquiry-head" style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;">
-            <h3 style="margin:0;">Enquiry</h3>
-            <button type="button" class="btn" id="enqClose" aria-label="Close">&times;</button>
-          </header>
-          <p class="muted" id="enquiryItem">Item: —</p>
-
-          <div class="grid-2">
-            <label>
-              <span>Your name</span>
-              <input type="text" id="enqName" placeholder="Jane Doe" required />
-            </label>
-            <label>
-              <span>Your email</span>
-              <input type="email" id="enqEmail" placeholder="you@example.com" required />
-            </label>
-          </div>
-
-          <label>
-            <span>Message</span>
-            <textarea id="enqMsg" rows="5" placeholder="Hi, I’m interested in …"></textarea>
-          </label>
-
-          <div class="enquiry-actions">
-            <button class="btn ghost" type="button" id="enqCancel">Cancel</button>
-            <a class="btn" id="mailtoBtn" href="#">Send email</a>
-          </div>
-        </form>
-      </dialog>
+      <!-- Enquiry dialog removed -->
     </div>
   </section>
 
@@ -342,59 +308,6 @@
     </div>
   </footer>
 
-  <script>
-    // Enquiry dialog logic (mailto, no backend needed)
-    const dlg = document.getElementById('enquiryDialog');
-    const mailtoBtn = document.getElementById('mailtoBtn');
-    const itemEl = document.getElementById('enquiryItem');
-    const nameEl = document.getElementById('enqName');
-    const emailEl = document.getElementById('enqEmail');
-    const msgEl = document.getElementById('enqMsg');
-
-    document.querySelectorAll('[data-enquire]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.product-card');
-        const title = card.dataset.title;
-        const sku = card.dataset.sku;
-        const price = card.dataset.price;
-        const size = card.dataset.size;
-        const condition = card.dataset.condition;
-        const location = card.dataset.location;
-
-        itemEl.textContent = `Item: ${title} (SKU ${sku}) — ${price}`;
-
-        const subject = encodeURIComponent(`[Enquiry] ${title} — ${sku}`);
-        const template = `Hello Lionel,%0D%0A%0D%0AI'm interested in the following item:%0D%0A- Title: ${title}%0D%0A- SKU: ${sku}%0D%0A- Price: ${price}%0D%0A- Size: ${size}%0D%0A- Condition: ${condition}%0D%0A- Location: ${location}%0D%0A%0D%0AMy details:%0D%0AName: %7Benter name%7D%0D%0AEmail: %7Benter email%7D%0D%0A%0D%0AThanks!`;
-        mailtoBtn.href = `mailto:unfoldkraft@gmail.com?subject=${subject}&body=${template}`;
-
-        if (typeof dlg.showModal === 'function') {
-          dlg.showModal();
-        } else {
-          // Fallback: jump straight to mailto
-          window.location.href = mailtoBtn.href;
-        }
-      });
-    });
-
-    // Explicit close controls
-    const cancelBtn = document.getElementById('enqCancel');
-    const closeBtn = document.getElementById('enqClose');
-
-    cancelBtn?.addEventListener('click', () => dlg.close());
-    closeBtn?.addEventListener('click', () => dlg.close());
-
-    // Backdrop click-to-close
-    if (dlg) {
-      dlg.addEventListener('click', (e) => {
-        const rect = dlg.getBoundingClientRect();
-        const inside = e.clientX >= rect.left && e.clientX <= rect.right &&
-                       e.clientY >= rect.top  && e.clientY <= rect.bottom;
-        if (!inside) dlg.close();
-      });
-    }
-
-    // Optional: close after clicking “Send email”
-    mailtoBtn?.addEventListener('click', () => dlg.close());
-  </script>
+  <!-- Enquiry script removed -->
 </body>
 </html>
