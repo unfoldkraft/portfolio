@@ -12,8 +12,11 @@
   <header class="site-header">
     <div class="header-inner">
       <div class="brand">
-        <img src="logo.png" alt="Unfold Kraft" class="logo-img">
-        <span class="brand-name"><span class="red">UNFOLD</span> <span class="yellow">KRAFT</span></span>
+        <img src="logo.png" alt="Logo" class="logo-img">
+        <div class="brand-text">
+          <span class="red">UNFOLD</span>
+          <span class="yellow">KRAFT</span>
+        </div>
       </div>
       <nav id="site-nav">
         <a href="#projects">PROJECTS</a>
@@ -24,76 +27,83 @@
     </div>
   </header>
 
-  <main>
-    <section id="projects" class="section">
-      <div class="container">
-        <h2 class="section-label">01 // SELECTED PROJECTS</h2>
-        <div class="projects-grid">
-          <article class="project-entry">
-            <div class="project-info">
-              <h3>Bridge Design Concept</h3>
-              <div class="meta-data">
-                <span>MAT: STEEL + UHPC</span>
-                <span>SPAN: 40M</span>
-                <span>LOC: ZÜRICH</span>
-              </div>
-              <p>Conceptual composite superstructure on integral concrete supports. Optimised for thermal expansion and material efficiency.</p>
-            </div>
-            <div class="project-visual">
-              <img src="Bridge_1.png" alt="Bridge Rendering">
-            </div>
-          </article>
+  <main class="container">
+    <section id="projects" class="page-section">
+      <h2 class="label">01 // SELECTED PROJECTS</h2>
+      
+      <article class="project-row">
+        <div class="project-details">
+          <h3>Bridge Design Concept</h3>
+          <div class="specs">
+            <p><strong>MATERIALITY:</strong> STEEL + UHPC</p>
+            <p><strong>SPAN:</strong> 40 M</p>
+            <p><strong>DATE:</strong> 2024</p>
           </div>
-      </div>
+          <p class="desc">Conceptual composite superstructure over the Limmat (Zürich). Optimised for thermal expansion and material efficiency.</p>
+        </div>
+        <div class="project-gallery">
+          <img src="Bridge_1.png" alt="Bridge 1" class="main-img">
+          <div class="img-grid">
+            <img src="Bridge_4.png" alt="Detail 1">
+            <img src="Bridge_5.png" alt="Detail 2">
+          </div>
+        </div>
+      </article>
+
+      <article class="project-row">
+        <div class="project-details">
+          <h3>Kunsthalle Zürich — AAA</h3>
+          <div class="specs">
+            <p><strong>MATERIALITY:</strong> REUSED TIMBER</p>
+            <p><strong>COMPLETION:</strong> SEP 2024</p>
+          </div>
+          <p class="desc">CNC and manual fabrication of reused wood members for a temporary stage. Responsibilities included logistics and site construction.</p>
+        </div>
+        <div class="project-gallery">
+          <div class="img-grid">
+            <img src="AAA_01.jpeg" alt="AAA 1">
+            <img src="AAA_02.jpeg" alt="AAA 2">
+          </div>
+        </div>
+      </article>
     </section>
 
-    <section id="experience" class="section">
-      <div class="container">
-        <h2 class="section-label">02 // EXPERIENCE</h2>
-        <div class="experience-table">
-          <div class="exp-row">
-            <div class="exp-date">2024—2026</div>
-            <div class="exp-detail">
-              <strong>ETH ZÜRICH</strong>
-              <span>Civil Engineer | Research & Optimisation</span>
-            </div>
-          </div>
-          <div class="exp-row">
-            <div class="exp-date">2022—2024</div>
-            <div class="exp-detail">
-              <strong>MSc CIVIL ENGINEERING</strong>
-              <span>ETH Zürich | Specialization in Structures</span>
-            </div>
-          </div>
+    <section id="experience" class="page-section">
+      <h2 class="label">02 // EXPERIENCE</h2>
+      <div class="table">
+        <div class="tr">
+          <div class="td-date">2024—PRES</div>
+          <div class="td-info"><strong>ETH ZÜRICH</strong> | Civil Engineer / Research</div>
+        </div>
+        <div class="tr">
+          <div class="td-date">2023</div>
+          <div class="td-info"><strong>BARTON RENOVATION</strong> | Wind Lateral System Design</div>
         </div>
       </div>
     </section>
 
-    <section id="consulting" class="section">
-      <div class="container">
-        <h2 class="section-label">03 // CONSULTING AREAS</h2>
-        <div class="consulting-grid">
-          <div class="consult-box">
-            <h3>Structural Optimisation</h3>
-            <p>Reducing embodied carbon through computational geometry and topology refinement.</p>
-          </div>
-          <div class="consult-box">
-            <h3>Circular Material Use</h3>
-            <p>Technical validation and risk assessment for the reuse of timber and steel in new construction.</p>
-          </div>
-          <div class="consult-box">
-            <h3>Durability Design</h3>
-            <p>Quantifying structural lifespans and service-life extension for infrastructure.</p>
-          </div>
+    <section id="consulting" class="page-section">
+      <h2 class="label">03 // CONSULTING AREAS</h2>
+      <div class="consult-grid">
+        <div class="consult-card">
+          <h4>Structural Optimisation</h4>
+          <p>Computational geometry refinement to minimize material volume.</p>
+        </div>
+        <div class="consult-card">
+          <h4>Material Reuse</h4>
+          <p>Technical validation and risk assessment for reclaimed steel/timber.</p>
         </div>
       </div>
+    </section>
+
+    <section id="contact" class="page-section contact-box">
+      <h2 class="label">04 // CONTACT</h2>
+      <p>For inquiries: <a href="mailto:unfoldkraft@gmail.com" class="red-link">unfoldkraft@gmail.com</a></p>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 Lionel G.S. — Engineering Design + Optimisation</p>
-    </div>
+  <footer>
+    <p>© 2026 Lionel G.S. — Zürich, CH</p>
   </footer>
 
 </body>
