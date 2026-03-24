@@ -1,313 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lionel G.S. | Engineering Design + Optimisation</title>
-  <meta name="color-scheme" content="light dark" />
-  <meta name="description" content="Portfolio of Lionel G.S. — engineering design and optimisation projects." />
-  <link rel="stylesheet" href="site.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lionel G.S. | Unfold Kraft</title>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="theme.css">
 </head>
 <body>
-  <!-- Header -->
-  <header class="site-header" role="banner">
+
+  <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="#">Lionel G.S. — Engineering Design + Optimisation</a>
-
-      <!-- Mobile menu (no JS) -->
-      <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-hidden="true" />
-      <label for="nav-toggle" class="nav-btn" aria-label="Toggle navigation" aria-controls="site-nav" aria-expanded="false"><span></span></label>
-
-      <nav id="site-nav" aria-label="Primary">
-        <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#projects">Projects</a>
-        <a class="nav-link" href="#shop">Shop</a>
-        <a class="nav-link" href="#contact">Contact</a>
+      <div class="brand">
+        <img src="logo.png" alt="Unfold Kraft" class="logo-img">
+        <span class="brand-name"><span class="red">UNFOLD</span> <span class="yellow">KRAFT</span></span>
+      </div>
+      <nav id="site-nav">
+        <a href="#projects">PROJECTS</a>
+        <a href="#experience">EXPERIENCE</a>
+        <a href="#consulting">CONSULTING</a>
+        <a href="#contact">CONTACT</a>
       </nav>
     </div>
   </header>
 
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="container">
-      <h2>About</h2>
-      <p class="lede">I’m a civil engineer (ETH Zürich) with experience in industrial fabrication and construction management. I explore optimisation, sustainable material (re)use, and durability-driven design to extend structural lifespans and quantify risk.</p>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="section">
-    <div class="container">
-      <h2>Projects</h2>
-      <div class="projects-grid">
-
-        <!-- Bridge -->
-        <article class="project-card" id="bridge">
-          <div class="project-inner">
-            <div class="project-text">
-              <h3 class="project-title">Bridge Design Concept</h3>
-              <div class="project-meta">
-                <span><strong>Materiality:</strong> Steel + UHPC</span>
-                <span><strong>Span:</strong> 40 m</span>
-                <span><strong>Completion:</strong> Dec 2024</span>
-                <span><strong>Supervisor:</strong> Prof. Dr. Walter Kaufmann</span>
-                <span><strong>Collaborator:</strong> Antoine Binggeli</span>
+  <main>
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-label">01 // SELECTED PROJECTS</h2>
+        <div class="projects-grid">
+          <article class="project-entry">
+            <div class="project-info">
+              <h3>Bridge Design Concept</h3>
+              <div class="meta-data">
+                <span>MAT: STEEL + UHPC</span>
+                <span>SPAN: 40M</span>
+                <span>LOC: ZÜRICH</span>
               </div>
-              <p class="project-desc">Conceptual bridge over the Limmat (Zürich): compact composite superstructure (S335 steel, UHPC deck) on integral concrete supports with pile foundations. Abutments accommodate thermal expansion.</p>
+              <p>Conceptual composite superstructure on integral concrete supports. Optimised for thermal expansion and material efficiency.</p>
             </div>
-            <div class="project-media">
-              <div class="media-grid">
-                <img src="Bridge_1.png" alt="Bridge concept rendering" />
-                <img src="Bridge_2a.png" alt="Bridge detail a" />
-                <img src="Bridge_2b.png" alt="Bridge detail b" />
-                <img src="Bridge_3.png" alt="Bridge model" />
-                <img src="Bridge_4.png" alt="Bridge section" />
-                <img src="Bridge_5.png" alt="Bridge elevation" />
-                <img src="Bridge_6.png" alt="Bridge plan" />
-              </div>
+            <div class="project-visual">
+              <img src="Bridge_1.png" alt="Bridge Rendering">
             </div>
+          </article>
           </div>
-        </article>
-
-        <!-- Cello Stand -->
-        <article class="project-card alt" id="cello-stand">
-          <div class="project-inner">
-            <div class="project-text">
-              <h3 class="project-title">Cello Stand</h3>
-              <div class="project-meta">
-                <span><strong>Materiality:</strong> Steel tubing, foam padding</span>
-                <span><strong>Dimensions:</strong> 80 × 50 × 100 cm</span>
-                <span><strong>Completion:</strong> Nov 2019</span>
-              </div>
-              <p class="project-desc">Custom stand prioritising ergonomic access and stability for a cello.</p>
-            </div>
-            <div class="project-media">
-              <div class="media-grid">
-                <img src="CELLO_STAND_1_NO_BACKGROUND.png" alt="Cello stand view" />
-                <img src="CELLO_STAND_2_NO_BACKGROUND.png" alt="Cello stand alternate" />
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Kunsthalle AAA -->
-        <article class="project-card" id="AAA">
-          <div class="project-inner">
-            <div class="project-text">
-              <h3 class="project-title">Kunsthalle Zürich — AAA Experiments</h3>
-              <div class="project-meta">
-                <span><strong>Materiality:</strong> Reused timber, steel cable</span>
-                <span><strong>Size:</strong> 10 × 20 × 6 m</span>
-                <span><strong>Completion:</strong> Sep 2024</span>
-              </div>
-              <p class="project-desc">CNC and manual fabrication of reused wood members for a new stage. Responsibilities included part delivery, logistics, and site construction.</p>
-            </div>
-            <div class="project-media">
-              <div class="media-grid">
-                <img src="AAA_01.jpeg" alt="AAA project photo 1" />
-                <img src="AAA_02.jpeg" alt="AAA project photo 2" />
-                <img src="AAA_03.jpeg" alt="AAA project photo 3" />
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Bike Rack -->
-        <article class="project-card alt" id="bike-rack">
-          <div class="project-inner">
-            <div class="project-text">
-              <h3 class="project-title">Modular Milk Crate Bike Rack System</h3>
-              <div class="project-meta">
-                <span><strong>Materiality:</strong> Aluminium frame, steel fasteners</span>
-                <span><strong>Completion:</strong> Mar 2020</span>
-              </div>
-              <p class="project-desc">Modular bicycle attachment system for secure transport of crates; adaptable to different frames.</p>
-            </div>
-            <div class="project-media">
-              <div class="media-grid">
-                <img src="IMG_20200722_093953411_HDR.jpg" alt="Bike rack photo" />
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Barton Restoration -->
-        <article class="project-card" id="barton-restoration">
-          <div class="project-inner">
-            <div class="project-text">
-              <h3 class="project-title">Barton Storage Building Renovation</h3>
-              <div class="project-meta">
-                <span><strong>Materiality:</strong> Reclaimed steel & wood</span>
-                <span><strong>Footprint:</strong> 21 m²</span>
-                <span><strong>Completion:</strong> Aug 2023</span>
-                <span><strong>Embodied carbon saved:</strong> 877 kg CO₂e</span>
-              </div>
-              <p class="project-desc">Demolition of non-serviceable elements; design and execution of new wind lateral system; replacement elements sourced 50 km away. Sonceboz-Sombeval, Switzerland.</p>
-            </div>
-            <div class="project-media">
-              <div class="media-grid">
-                <img src="Barton_Pre.jpg" alt="Barton — pre works" />
-                <img src="Barton_Con.jpg" alt="Barton — during works" />
-                <img src="Barton_Con_2.jpg" alt="Barton — during works 2" />
-                <img src="Barton_Post.jpg" alt="Barton — post works" />
-                <img src="Barton_View.jpg" alt="Barton — view" />
-                <img src="Barton_srf.JPG" alt="Barton — site" />
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Concept Dormitory -->
-        <article class="project-card alt" id="concept-dorm">
-          <div class="project-inner">
-            <div class="project-text">
-              <h3 class="project-title">Concept Dormitory</h3>
-              <div class="project-meta">
-                <span><strong>Materiality:</strong> Brick, RC, reclaimed wood</span>
-              </div>
-              <p class="project-desc">Concept design with floor plans and a 3D massing study.</p>
-            </div>
-            <div class="project-media">
-              <div class="media-grid">
-                <img src="Floor 1.jpg" alt="Concept dorm floor 1" />
-                <img src="Floor 3.jpg" alt="Concept dorm floor 3" />
-                <img src="3d rendergood.jpg" alt="Concept dorm render" />
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Solar Decathlon -->
-        <article class="project-card" id="SD">
-          <div class="project-inner">
-            <div class="project-text">
-              <h3 class="project-title">Solar Decathlon — Grand Winner 2022</h3>
-              <div class="project-meta">
-                <span><strong>Advisors:</strong> Baglione, Tehrani, Cabrera, Palacio</span>
-              </div>
-              <p class="project-desc"><strong>NY Harbor School — Expansion & Renovation.</strong> Net-zero strategies: PV, reused materials, green roof, geothermal energy piles, and rainwater capture. Resilience via flood-aware sectioning, planting, and a bathtub foundation.</p>
-            </div>
-            <div class="project-media">
-              <div class="media-grid">
-                <img src="SD0.jpg" alt="Solar Decathlon cover" />
-                <img src="SD1.png" alt="Solar Decathlon sheet 1" />
-                <img src="SD2.png" alt="Solar Decathlon sheet 2" />
-                <img src="SD3.png" alt="Solar Decathlon sheet 3" />
-                <img src="SD4.png" alt="Solar Decathlon sheet 4" />
-                <img src="SD5.png" alt="Solar Decathlon sheet 5" />
-                <img src="SD6.png" alt="Solar Decathlon sheet 6" />
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Pyrolysis Reactor -->
-        <article class="project-card alt" id="cc1">
-          <div class="project-inner">
-            <div class="project-text">
-              <h3 class="project-title">Carbon Creature 1 — Pyrolysis Reactor</h3>
-              <div class="project-meta">
-                <span><strong>Materiality:</strong> Steel</span>
-                <span><strong>Size:</strong> 100 × 50 × 100 cm</span>
-                <span><strong>Completion:</strong> Summer 2020</span>
-              </div>
-              <p class="project-desc">Biochar reactor with mixed-gas heating and gas recycling. Prototype fitted with thermocouples and NOx/CO₂ sensors to study cardboard pyrolysis efficiency.</p>
-            </div>
-            <div class="project-media">
-              <div class="media-grid">
-                <img src="carbon_creature_1_nobackground.png" alt="Pyrolysis reactor" />
-                <img src="carbon_creature_2_nobackground.png" alt="Pyrolysis reactor alt" />
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Lamp -->
-        <article class="project-card" id="lamp">
-          <div class="project-inner">
-            <div class="project-text">
-              <h3 class="project-title">DWWLA Lamp</h3>
-              <div class="project-meta">
-                <span><strong>Materiality:</strong> Salvaged boards, halogen lamp, steel pipe cut-offs</span>
-                <span><strong>Size:</strong> 2 m tall; base 20 × 20 cm</span>
-                <span><strong>Completion:</strong> Jun 2024</span>
-              </div>
-              <p class="project-desc">Vertical lamp using reclaimed timber as a flexible mounting medium for small hung items along the side.</p>
-            </div>
-            <div class="project-media">
-              <div class="media-grid">
-                <img src="Lamp DWWLA 01 no background.png" alt="Lamp photo" />
-                <img src="Lamp DWWLA 02 no background.png" alt="Lamp alternate" />
-              </div>
-            </div>
-          </div>
-        </article>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Shop -->
-  <section id="shop" class="section">
-    <div class="container">
-      <h2>Shop</h2>
-      <p class="lede">Occasional one-off objects and prototypes. If you’re interested, please get in touch via the contact details below.</p>
-
-      <div class="shop-grid">
-        <!-- Example product 1 -->
-        <article class="product-card" data-sku="DWWLA-001" data-title="DWWLA Lamp" data-price="CHF 120" data-size="2 m × 20 × 20 cm" data-condition="Used / refurbished" data-location="Zürich 8050">
-          <div class="product-media">
-            <img src="Lamp DWWLA 01 no background.png" alt="DWWLA Lamp front" />
-          </div>
-          <div class="product-body">
-            <h3 class="product-title">DWWLA Lamp</h3>
-            <div class="product-meta">
-              <span class="badge">CHF 120</span>
-              <span class="muted">2 m × 20 × 20 cm</span>
+    <section id="experience" class="section">
+      <div class="container">
+        <h2 class="section-label">02 // EXPERIENCE</h2>
+        <div class="experience-table">
+          <div class="exp-row">
+            <div class="exp-date">2024—2026</div>
+            <div class="exp-detail">
+              <strong>ETH ZÜRICH</strong>
+              <span>Civil Engineer | Research & Optimisation</span>
             </div>
-            <p class="product-desc">Vertical lamp made of reclaimed boards and a linear halogen fixture. Local pickup preferred.</p>
-            <!-- Enquiry button removed -->
           </div>
-        </article>
-
-        <!-- Example product 2 -->
-        <article class="product-card" data-sku="STAND-001" data-title="Cello Stand" data-price="CHF 80" data-size="80 × 50 × 100 cm" data-condition="Used" data-location="Zürich 8050">
-          <div class="product-media">
-            <img src="CELLO_STAND_1_NO_BACKGROUND.png" alt="Cello stand" />
-          </div>
-          <div class="product-body">
-            <h3 class="product-title">Cello Stand</h3>
-            <div class="product-meta">
-              <span class="badge">CHF 80</span>
-              <span class="muted">80 × 50 × 100 cm</span>
+          <div class="exp-row">
+            <div class="exp-date">2022—2024</div>
+            <div class="exp-detail">
+              <strong>MSc CIVIL ENGINEERING</strong>
+              <span>ETH Zürich | Specialization in Structures</span>
             </div>
-            <p class="product-desc">Custom steel tubing stand with foam padding for protection.</p>
-            <!-- Enquiry button removed -->
           </div>
-        </article>
+        </div>
       </div>
+    </section>
 
-      <!-- Enquiry dialog removed -->
-    </div>
-  </section>
+    <section id="consulting" class="section">
+      <div class="container">
+        <h2 class="section-label">03 // CONSULTING AREAS</h2>
+        <div class="consulting-grid">
+          <div class="consult-box">
+            <h3>Structural Optimisation</h3>
+            <p>Reducing embodied carbon through computational geometry and topology refinement.</p>
+          </div>
+          <div class="consult-box">
+            <h3>Circular Material Use</h3>
+            <p>Technical validation and risk assessment for the reuse of timber and steel in new construction.</p>
+          </div>
+          <div class="consult-box">
+            <h3>Durability Design</h3>
+            <p>Quantifying structural lifespans and service-life extension for infrastructure.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <!-- Contact -->
-  <section id="contact" class="section">
+  <footer class="site-footer">
     <div class="container">
-      <h2>Contact</h2>
-      <div class="contact-card">
-        <p>For inquiries or collaborations, email <a href="mailto:unfoldkraft@gmail.com">unfoldkraft@gmail.com</a>.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="foot-inner">
-      <div>© 2025 Lionel G.S. — Engineering Design + Optimisation</div>
-      <div class="foot-nav"><a href="#about">About</a> · <a href="#projects">Projects</a> · <a href="#shop">Shop</a> · <a href="#contact">Contact</a></div>
+      <p>© 2026 Lionel G.S. — Engineering Design + Optimisation</p>
     </div>
   </footer>
 
-  <!-- Enquiry script removed -->
 </body>
 </html>
