@@ -1,0 +1,58 @@
+/* theme.css */
+:root {
+  --unfold-red: #E21D06;
+  --kraft-yellow: #E2E842;
+}
+
+/* Logo & Brand Styling */
+.logo-img {
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+.brand-name {
+  font-weight: 900;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+}
+
+.red { color: var(--unfold-red); }
+.yellow { color: var(--kraft-yellow); }
+
+/* Functional Accents */
+#site-nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+#site-nav a:hover {
+  color: var(--unfold-red);
+  border-bottom: 2px solid var(--kraft-yellow);
+}
+
+.consult-box h3 {
+  border-left: 10px solid var(--kraft-yellow);
+  padding-left: 15px;
+  margin-bottom: 1rem;
+}
+
+.exp-date {
+  color: var(--unfold-red);
+  font-family: monospace;
+  font-weight: bold;
+}
+
+::selection {
+  background: var(--kraft-yellow);
+}
+
+/* Dark Mode Override (CAD Style) */
+@media (prefers-color-scheme: dark) {
+  body, .site-header, .consult-box { background-color: #111; color: #fff; }
+  .section, .site-header, .project-entry, .consulting-grid, #site-nav a { border-color: #333; }
+  .consulting-grid { background-color: #333; }
+  #site-nav a { color: #fff; }
+}
