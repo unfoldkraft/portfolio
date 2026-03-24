@@ -1,55 +1,60 @@
-/* ARCHITECTURAL BASE */
+/* base reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { 
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
-  background: #fff; 
-  color: #000; 
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
+:root { --red: #E21D06; --yellow: #E2E842; }
+body { font-family: "Helvetica Neue", Helvetica, sans-serif; background: #fff; color: #000; line-height: 1.4; }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 
-/* THE COLORS */
-:root {
-  --red: #E21D06;
-  --yellow: #E2E842;
-}
-
-/* HEADER & NAV */
-.site-header { border-bottom: 2px solid #000; padding: 30px 0; position: sticky; top: 0; background: #fff; z-index: 10; }
-.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+/* header */
+.site-header { border-bottom: 2px solid #000; padding: 20px 0; position: sticky; top: 0; background: #fff; z-index: 100; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 .brand { display: flex; align-items: center; }
-.logo-img { height: 45px; margin-right: 15px; }
-.brand-text { font-weight: 900; font-size: 1.2rem; letter-spacing: -0.05em; }
+.logo-img { height: 40px; margin-right: 12px; }
+.brand-text { font-weight: 900; font-size: 1rem; }
 .red { color: var(--red); }
 .yellow { color: var(--yellow); }
+#site-nav a { text-decoration: none; color: #000; font-weight: 800; font-size: 0.7rem; margin-left: 25px; letter-spacing: 0.1em; }
 
-#site-nav a { text-decoration: none; color: #000; font-weight: bold; font-size: 0.8rem; margin-left: 30px; letter-spacing: 0.1em; }
-#site-nav a:hover { color: var(--red); }
+/* sections */
+.page-section { padding: 60px 0; border-bottom: 1.5px solid #000; }
+.label { font-size: 0.65rem; letter-spacing: 0.3em; font-weight: 900; margin-bottom: 40px; }
 
-/* SECTIONS */
-.page-section { padding: 80px 0; border-bottom: 1px solid #000; }
-.label { font-size: 0.7rem; letter-spacing: 0.3em; font-weight: 900; margin-bottom: 50px; color: #000; }
+/* IMAGE SIZE CONTROL */
+.project-row { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; margin-bottom: 100px; align-items: start; }
+h3 { text-transform: uppercase; font-size: 1.5rem; letter-spacing: -0.02em; }
+.specs { font-family: monospace; font-size: 0.7rem; color: var(--red); font-weight: bold; margin: 10px 0 20px 0; }
 
-/* PROJECTS: ARCHITECTURAL GRID */
-.project-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 100px; }
-h3 { text-transform: uppercase; font-size: 1.8rem; letter-spacing: -0.02em; margin-bottom: 10px; }
-.specs { font-family: monospace; font-size: 0.75rem; color: var(--red); margin-bottom: 20px; font-weight: bold; }
-.main-img { width: 100%; border: 1.5px solid #000; display: block; }
+/* This keeps images from becoming "Too Big" */
+.image-container {
+  width: 100%;
+  height: 320px; /* Fixed height for consistency */
+  border: 1.5px solid #000;
+  overflow: hidden;
+  background: #f9f9f9;
+  margin-bottom: 10px;
+}
 
-/* EXPERIENCE & CONSULTING */
-.exp-item { display: grid; grid-template-columns: 140px 1fr; padding: 20px 0; border-top: 1px solid #eee; }
-.date { font-family: monospace; font-weight: bold; color: var(--red); }
+.image-container.small {
+  height: 160px; /* Half height for grid details */
+}
 
-.consult-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-.consult-card { border: 1.5px solid #000; padding: 40px; }
-.consult-card h4 { border-left: 10px solid var(--yellow); padding-left: 15px; margin-bottom: 15px; text-transform: uppercase; }
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Keeps the whole engineering drawing visible without cropping */
+  padding: 10px;      /* Gives the drawings some breathing room */
+  background: #fff;
+  display: block;
+}
 
-.footer { padding: 60px 0; text-align: center; font-size: 0.7rem; font-family: monospace; color: #999; }
+.img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-/* MOBILE RESPONSIVENESS */
-@media (max-width: 800px) {
-  .project-row, .consult-grid { grid-template-columns: 1fr; gap: 30px; }
-  .header-inner { flex-direction: column; gap: 20px; }
-  #site-nav a { margin: 0 10px; }
+/* Experience & Consulting */
+.exp-item { display: grid; grid-template-columns: 120px 1fr; padding: 15px 0; border-top: 1px solid #eee; }
+.consult-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.consult-card { border: 1.5px solid #000; padding: 25px; }
+.consult-card h4 { border-left: 8px solid var(--yellow); padding-left: 12px; margin-bottom: 10px; text-transform: uppercase; }
+
+@media (max-width: 850px) {
+  .project-row, .consult-grid { grid-template-columns: 1fr; }
+  .image-container { height: 250px; }
 }
