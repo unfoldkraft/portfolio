@@ -7,16 +7,13 @@
   --text: #000000;
   --line: #000000;
 }
-
 body { 
   font-family: Helvetica, Arial, sans-serif; 
   background: var(--bg); 
   color: var(--text); 
   line-height: 1.4; 
 }
-
 .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
-
 /* HEADER - CLEAN & RIGID */
 .site-header { border-bottom: 2px solid var(--line); padding: 25px 0; position: sticky; top: 0; background: #fff; z-index: 100; }
 .header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 40px; }
@@ -25,19 +22,24 @@ body {
 .brand-text { font-weight: 900; font-size: 1.2rem; letter-spacing: -0.04em; line-height: 1; }
 .red { color: var(--red); }
 .yellow { color: var(--yellow); }
-
 #site-nav a { text-decoration: none; color: var(--text); font-weight: 800; font-size: 0.75rem; margin-left: 25px; letter-spacing: 0.1em; }
 #site-nav a:hover { color: var(--red); }
+
+/* HERO / INTRO */
+.hero-section { padding: 70px 0 80px; border-bottom: 1px solid var(--line); }
+.hero-banner-frame { border: 1.5px solid var(--line); margin: 0 auto 40px auto; overflow: hidden; max-width: 780px; }
+.hero-banner-frame img { display: block; width: 100%; height: auto; }
+.tagline { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 20px; max-width: 800px; }
+.description { font-size: 1rem; max-width: 760px; color: #222; }
+.description strong { color: var(--red); }
 
 /* SECTIONS */
 .page-section { padding: 80px 0; border-bottom: 1px solid var(--line); }
 .label { font-size: 0.7rem; letter-spacing: 0.3em; font-weight: 900; margin-bottom: 50px; text-transform: uppercase; }
-
 /* PROJECT ROWS - 2 COLUMN GRID */
 .project-row { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; margin-bottom: 100px; align-items: start; }
 h3 { text-transform: uppercase; font-size: 1.8rem; letter-spacing: -0.02em; margin-bottom: 5px; }
 .specs { font-family: monospace; font-size: 0.7rem; color: var(--red); font-weight: bold; margin-bottom: 20px; text-transform: uppercase; }
-
 /* STANDARDIZED IMAGE CONTAINERS */
 .image-container {
   width: 100%;
@@ -47,11 +49,9 @@ h3 { text-transform: uppercase; font-size: 1.8rem; letter-spacing: -0.02em; marg
   background: #f9f9f9;
   margin-bottom: 10px;
 }
-
 .image-container.small {
   height: 160px; /* SECONDARY GRID HEIGHT */
 }
-
 .image-container img {
   width: 100%;
   height: 100%;
@@ -60,21 +60,25 @@ h3 { text-transform: uppercase; font-size: 1.8rem; letter-spacing: -0.02em; marg
   background: #fff;
   display: block;
 }
-
 .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-
 /* EXPERIENCE & CONSULTING */
 .exp-item { display: grid; grid-template-columns: 140px 1fr; padding: 20px 0; border-top: 1px solid #eee; }
 .date { font-family: monospace; font-weight: bold; color: var(--red); }
+.exp-item .info span.tag { font-family: monospace; font-size: 0.65rem; letter-spacing: 0.05em; color: #888; display: block; margin-top: 4px; text-transform: uppercase; }
 
-.consult-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.consult-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .consult-card { border: 1.5px solid var(--line); padding: 30px; }
 .consult-card h4 { border-left: 10px solid var(--yellow); padding-left: 15px; margin-bottom: 10px; text-transform: uppercase; }
 
+.consult-footnote { margin-top: 30px; border-top: 1px solid #eee; padding-top: 30px; }
+.consult-footnote p { max-width: 760px; margin-bottom: 16px; font-size: 0.95rem; }
+.consult-footnote p:last-child { margin-bottom: 0; font-style: italic; color: #333; }
+.consult-footnote strong { color: var(--red); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.03em; }
+
 /* FOOTER */
 .footer { padding: 60px 0; text-align: center; font-size: 0.7rem; font-family: monospace; }
-
 @media (max-width: 850px) {
   .project-row, .consult-grid { grid-template-columns: 1fr; gap: 30px; }
   .image-container { height: 280px; }
+  .tagline { font-size: 1.2rem; }
 }
